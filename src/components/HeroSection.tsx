@@ -17,7 +17,6 @@ const HeroSection = () => {
             className="mb-6 font-bold"
             style={{
               color: '#6aad2f',
-              fontFamily: 'Poppins, sans-serif',
               fontSize: '2.1em',
               lineHeight: 1.1,
               fontWeight: 700,
@@ -28,7 +27,6 @@ const HeroSection = () => {
           <p
             className="text-white max-w-xl mb-8"
             style={{
-              fontFamily: 'Poppins, sans-serif',
               fontSize: '1.15em',
               fontWeight: 400,
             }}
@@ -36,11 +34,12 @@ const HeroSection = () => {
             CARBON 6 godina garancije na frižidere i zamrzivače. Registrujte se i ostvarite 2+4 godine garancije na bilo koji Carbon frižider i zamrzivač <span style={{ fontWeight: 700 }}>kupljen do 31.12.2025.</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <button
-              className="px-8 py-2 border-2 border-white text-white rounded-full bg-transparent text-lg font-medium hover:bg-white hover:text-[#5e7e9b] transition-colors w-full sm:w-auto"
+            <a
+              href="#featured-products"
+              className="px-8 py-2 border-2 border-white text-white rounded-full bg-transparent text-lg font-medium hover:bg-white hover:text-[#5e7e9b] transition-colors w-full sm:w-auto text-center"
             >
               Pogledaj proizvode
-            </button>
+            </a>
             <a
               href="#warranty"
               className="px-8 py-2 border-2 border-white text-white rounded-full bg-transparent text-lg font-medium hover:bg-white hover:text-[#5e7e9b] transition-colors w-full sm:w-auto text-center"

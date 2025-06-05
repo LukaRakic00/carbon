@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -24,7 +23,7 @@ const ServiceSection = () => {
   ];
 
   return (
-    <section id="service" className="bg-gray-50 py-16">
+    <section id="service" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-black mb-4">Servis i podrška</h2>

@@ -69,12 +69,13 @@ const WarrantySection = () => {
   ];
 
   return (
-    <section id="warranty" className="bg-white py-16">
+    <section id="warranty" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-black mb-4">Registracija garancije</h2>
+          <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-blue-200 rounded-full mx-auto mb-4"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Registrujte svoj Carbon proizvod u roku od 30 dana od kupovine i produžite garanciju
+            U promotivnom periodu <b>01.01.2025.-31.12.2025</b>. registracijom u roku od 30 dana od datuma kupovine svaki potrošač ostvaruje pravo na produženu garanciju na kategorije bela tehnika i TV pod brendom Carbon.
           </p>
         </div>
 

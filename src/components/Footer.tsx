@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Instagram, Youtube, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const productCategories = [
@@ -14,14 +14,11 @@ const Footer = () => {
     'Kontakt',
     'Garancija',
     'Servis',
-    'FAQ',
-    'Povraćaj',
     'Politika privatnosti'
   ];
 
   const company = [
     'O nama',
-    'Karijera',
     'Novosti',
     'Blog',
     'Partneri'
@@ -55,17 +52,9 @@ const Footer = () => {
             </div>
 
             <div className="flex space-x-4">
-              <a href="#" className="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
+          
               <a href="#" className="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition-colors">
                 <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition-colors">
-                <Youtube className="w-5 h-5" />
-              </a>
-              <a href="#" className="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition-colors">
-                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>

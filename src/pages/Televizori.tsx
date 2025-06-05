@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 
 const products = [
   {
@@ -135,6 +135,49 @@ const Televizori = () => {
   const [modalImgIdx, setModalImgIdx] = useState(0);
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenImgIdx, setFullscreenImgIdx] = useState(0);
+  const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState({
+    resolution: [] as string[],
+    diagonal: [] as string[],
+    type: [] as string[],
+    backlight: [] as string[]
+  });
+
+  // Filter options
+  const resolutionOptions = ['HD', 'Full HD', '4K'];
+  const diagonalOptions = ['32"', '43"', '50"', '65"'];
+  const typeOptions = ['Smart TV', 'Android TV'];
+  const backlightOptions = ['Direct LED'];
+
+  // Filter products based on selected filters
+  const filteredProducts = products.filter(product => {
+    const specs = product.specs.join(' ').toLowerCase();
+    
+    if (filters.resolution.length > 0 && !filters.resolution.some(r => specs.includes(r.toLowerCase()))) return false;
+    if (filters.diagonal.length > 0 && !filters.diagonal.some(d => specs.includes(d.toLowerCase()))) return false;
+    if (filters.type.length > 0 && !filters.type.some(t => specs.includes(t.toLowerCase()))) return false;
+    if (filters.backlight.length > 0 && !filters.backlight.some(b => specs.includes(b.toLowerCase()))) return false;
+    
+    return true;
+  });
+
+  const toggleFilter = (category: keyof typeof filters, value: string) => {
+    setFilters(prev => ({
+      ...prev,
+      [category]: prev[category].includes(value)
+        ? prev[category].filter(v => v !== value)
+        : [...prev[category], value]
+    }));
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      resolution: [],
+      diagonal: [],
+      type: [],
+      backlight: []
+    });
+  };
 
   const openModal = (idx: number) => {
     setModalIdx(idx);
@@ -178,18 +221,150 @@ const Televizori = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
       <main className="flex-1 max-w-7xl mx-auto px-2 sm:px-4 py-6 sm:py-12">
-        <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-blue-900">Carbon televizori</h1>
-        <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((product, idx) => (
-            <div key={idx} className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center p-6 sm:p-8 relative min-h-[420px]">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold text-blue-900">Carbon televizori</h1>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow hover:shadow-md transition-shadow"
+          >
+            <Filter size={20} />
+            <span>Filteri</span>
+          </button>
+        </div>
+
+        {/* Filteri */}
+        {showFilters && (
+          <div className="bg-white p-6 rounded-xl shadow-lg mb-8 relative">
+            <button
+              onClick={() => setShowFilters(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+              aria-label="Zatvori filtere"
+            >
+              <X size={24} />
+            </button>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Rezolucija */}
+              <div>
+                <h3 className="font-semibold mb-2">Rezolucija</h3>
+                <div className="space-y-2">
+                  {resolutionOptions.map(option => (
+                    <label key={option} className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={filters.resolution.includes(option)}
+                        onChange={() => toggleFilter('resolution', option)}
+                        className="w-4 h-4"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dijagonala */}
+              <div>
+                <h3 className="font-semibold mb-2">Dijagonala</h3>
+                <div className="space-y-2">
+                  {diagonalOptions.map(option => (
+                    <label key={option} className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={filters.diagonal.includes(option)}
+                        onChange={() => toggleFilter('diagonal', option)}
+                        className="w-4 h-4"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tip */}
+              <div>
+                <h3 className="font-semibold mb-2">Tip</h3>
+                <div className="space-y-2">
+                  {typeOptions.map(option => (
+                    <label key={option} className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={filters.type.includes(option)}
+                        onChange={() => toggleFilter('type', option)}
+                        className="w-4 h-4"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pozadinsko osvetljenje */}
+              <div>
+                <h3 className="font-semibold mb-2">Pozadinsko osvetljenje</h3>
+                <div className="space-y-2">
+                  {backlightOptions.map(option => (
+                    <label key={option} className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={filters.backlight.includes(option)}
+                        onChange={() => toggleFilter('backlight', option)}
+                        className="w-4 h-4"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Dugme za brisanje filtera */}
+            <div className="mt-6 flex justify-end">
+              <button
+                onClick={clearFilters}
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+              >
+                Obriši filtere
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Smart TV podnaslov i proizvodi */}
+        <div id="smart-tv" className="mb-8 mt-8">
+          <h2 className="text-xl md:text-2xl font-semibold text-black tracking-tight text-left">Smart TV</h2>
+          <div className="w-16 h-1 bg-gray-200 rounded-full mt-2 mb-2"></div>
+        </div>
+        <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-12">
+          {filteredProducts.filter(p => !p.specs.some(s => s.toLowerCase().includes('android'))).map((product, idx) => (
+            <div key={product.model} className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center p-6 sm:p-8 relative min-h-[420px]">
               <ImageCarousel images={product.images} onImageClick={() => { openModal(idx); openFullscreen(0); }} />
               <div className="text-center mb-6 mt-4">
                 <div className="font-bold text-lg sm:text-2xl text-gray-900 leading-tight mb-1">{product.name}</div>
-                <div className="text-blue-700 font-medium text-sm sm:text-base">Model: {product.model}</div>
               </div>
               <button
                 className="mt-auto w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow transition-all text-lg sm:text-xl"
-                onClick={() => openModal(idx)}
+                onClick={() => openModal(products.findIndex(p => p.model === product.model))}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a4 4 0 014-4h3m-7 4v2m0 0a4 4 0 01-4-4V7a4 4 0 014-4h6a4 4 0 014 4v6a4 4 0 01-4 4m-6 0h6" /></svg>
+                Detalji
+              </button>
+            </div>
+          ))}
+        </div>
+        {/* Android TV podnaslov i proizvodi */}
+        <div id="android-tv" className="mb-8 mt-8">
+          <h2 className="text-xl md:text-2xl font-semibold text-black tracking-tight text-left">Android TV</h2>
+          <div className="w-16 h-1 bg-gray-200 rounded-full mt-2 mb-2"></div>
+        </div>
+        <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {filteredProducts.filter(p => p.specs.some(s => s.toLowerCase().includes('android'))).map((product, idx) => (
+            <div key={product.model} className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center p-6 sm:p-8 relative min-h-[420px]">
+              <ImageCarousel images={product.images} onImageClick={() => { openModal(products.findIndex(p => p.model === product.model)); openFullscreen(0); }} />
+              <div className="text-center mb-6 mt-4">
+                <div className="font-bold text-lg sm:text-2xl text-gray-900 leading-tight mb-1">{product.name}</div>
+              </div>
+              <button
+                className="mt-auto w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow transition-all text-lg sm:text-xl"
+                onClick={() => openModal(products.findIndex(p => p.model === product.model))}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a4 4 0 014-4h3m-7 4v2m0 0a4 4 0 01-4-4V7a4 4 0 014-4h6a4 4 0 014 4v6a4 4 0 01-4 4m-6 0h6" /></svg>
                 Detalji
@@ -201,7 +376,7 @@ const Televizori = () => {
         {/* MODAL ZA SPECIFIKACIJU */}
         {modalIdx !== null && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="relative bg-white rounded-3xl shadow-2xl max-w-[98vw] max-h-[98vh] w-full h-auto mx-2 sm:mx-4 p-2 sm:p-6 flex flex-col items-center animate-fadeIn overflow-auto">
+            <div className="relative bg-white rounded-3xl shadow-2xl max-w-xl sm:max-w-2xl lg:max-w-3xl w-full h-auto mx-2 sm:mx-4 p-2 sm:p-4 flex flex-col items-center animate-fadeIn overflow-auto">
               {/* Fullscreen dugme */}
               <button className="absolute top-3 left-14 text-gray-500 hover:text-black" onClick={() => openFullscreen(modalImgIdx)} aria-label="Fullscreen">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V6a2 2 0 012-2h2m8 0h2a2 2 0 012 2v2m0 8v2a2 2 0 01-2 2h-2m-8 0H6a2 2 0 01-2-2v-2" /></svg>
@@ -214,7 +389,7 @@ const Televizori = () => {
               <div className="flex flex-col items-center w-full">
                 {/* Glavna slika */}
                 <div className="w-full flex items-center justify-center cursor-pointer" onClick={() => openFullscreen(modalImgIdx)}>
-                  <img src={products[modalIdx].images[modalImgIdx]} alt={products[modalIdx].name} className="rounded-2xl object-contain max-h-[40vh] w-auto mx-auto mb-4 bg-white" />
+                  <img src={products[modalIdx].images[modalImgIdx]} alt={products[modalIdx].name} className="rounded-2xl object-contain max-h-[40vh] w-auto mx-auto mb-4 bg-gray-50" />
                 </div>
                 {/* Thumbnailovi */}
                 <div className="flex gap-2 sm:gap-4 mb-4 overflow-x-auto">
@@ -229,15 +404,15 @@ const Televizori = () => {
                   ))}
                 </div>
                 {/* Naziv i model */}
-                <div className="text-center mb-2">
-                  <div className="font-bold text-base sm:text-lg text-gray-900 leading-tight">{products[modalIdx].name}</div>
-                  <div className="text-blue-700 font-medium text-xs sm:text-sm">Model: <span className="underline cursor-pointer">{products[modalIdx].model}</span></div>
-                </div>
+                <div className="font-bold text-xl sm:text-2xl text-gray-900 mb-2 text-center">{products[modalIdx].name}</div>
+                <div className="text-gray-600 mb-4 text-center">Model: {products[modalIdx].model}</div>
                 {/* Specifikacije */}
-                <div className="bg-gray-50 rounded-xl p-2 sm:p-4 text-gray-800 text-xs sm:text-sm font-medium w-full max-w-[95vw] mx-auto mt-2">
-                  {products[modalIdx].specs.map((spec, i) => (
-                    <div key={i}>{spec}</div>
-                  ))}
+                <div className="bg-gray-50 rounded-xl p-4 text-gray-800 text-sm font-medium w-full max-w-xl mx-auto mt-2 shadow">
+                  <ul className="list-disc pl-5">
+                    {products[modalIdx].specs.map((spec, i) => (
+                      <li key={i}>{spec}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

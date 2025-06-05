@@ -172,17 +172,43 @@ const MaliAparati = () => {
       <Header />
       <main className="flex-1 max-w-7xl mx-auto px-2 sm:px-4 py-6 sm:py-12">
         <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-blue-900">Carbon mali kućni aparati</h1>
-        <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((product, idx) => (
-            <div key={idx} className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center p-6 sm:p-8 relative min-h-[420px]">
-              <ImageCarousel images={product.images} onImageClick={() => { openModal(idx); openFullscreen(0); }} />
+        {/* Air fryeri podnaslov i proizvodi */}
+        <div id="air-fryeri" className="mb-8 mt-8">
+          <h2 className="text-xl md:text-2xl font-semibold text-black tracking-tight text-left">Air fryeri</h2>
+          <div className="w-16 h-1 bg-gray-200 rounded-full mt-2 mb-2"></div>
+        </div>
+        <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-12">
+          {products.filter(p => p.name.toLowerCase().includes('air fryer')).map((product, idx) => (
+            <div key={product.model} className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center p-6 sm:p-8 relative min-h-[420px]">
+              <ImageCarousel images={product.images} onImageClick={() => { openModal(products.findIndex(pr => pr.model === product.model)); openFullscreen(0); }} />
               <div className="text-center mb-6 mt-4">
                 <div className="font-bold text-lg sm:text-2xl text-gray-900 leading-tight mb-1">{product.name}</div>
-                <div className="text-blue-700 font-medium text-sm sm:text-base">Model: {product.model}</div>
               </div>
               <button
                 className="mt-auto w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow transition-all text-lg sm:text-xl"
-                onClick={() => openModal(idx)}
+                onClick={() => openModal(products.findIndex(pr => pr.model === product.model))}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a4 4 0 014-4h3m-7 4v2m0 0a4 4 0 01-4-4V7a4 4 0 014-4h6a4 4 0 014 4v6a4 4 0 01-4 4m-6 0h6" /></svg>
+                Detalji
+              </button>
+            </div>
+          ))}
+        </div>
+        {/* Aparati za kafu podnaslov i proizvodi */}
+        <div id="aparati-za-kafu" className="mb-8 mt-8">
+          <h2 className="text-xl md:text-2xl font-semibold text-black tracking-tight text-left">Aparati za kafu</h2>
+          <div className="w-16 h-1 bg-gray-200 rounded-full mt-2 mb-2"></div>
+        </div>
+        <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-12">
+          {products.filter(p => p.name.toLowerCase().includes('aparat za kafu')).map((product, idx) => (
+            <div key={product.model} className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center p-6 sm:p-8 relative min-h-[420px]">
+              <ImageCarousel images={product.images} onImageClick={() => { openModal(products.findIndex(pr => pr.model === product.model)); openFullscreen(0); }} />
+              <div className="text-center mb-6 mt-4">
+                <div className="font-bold text-lg sm:text-2xl text-gray-900 leading-tight mb-1">{product.name}</div>
+              </div>
+              <button
+                className="mt-auto w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow transition-all text-lg sm:text-xl"
+                onClick={() => openModal(products.findIndex(pr => pr.model === product.model))}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a4 4 0 014-4h3m-7 4v2m0 0a4 4 0 01-4-4V7a4 4 0 014-4h6a4 4 0 014 4v6a4 4 0 01-4 4m-6 0h6" /></svg>
                 Detalji
@@ -194,7 +220,7 @@ const MaliAparati = () => {
         {/* MODAL ZA SPECIFIKACIJU */}
         {modalIdx !== null && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="relative bg-white rounded-3xl shadow-2xl max-w-[98vw] max-h-[98vh] w-full h-auto mx-2 sm:mx-4 p-2 sm:p-6 flex flex-col items-center animate-fadeIn overflow-auto">
+            <div className="relative bg-white rounded-3xl shadow-2xl max-w-xl sm:max-w-2xl lg:max-w-3xl w-full h-auto mx-2 sm:mx-4 p-2 sm:p-4 flex flex-col items-center animate-fadeIn overflow-auto">
               {/* Fullscreen dugme */}
               <button className="absolute top-3 left-14 text-gray-500 hover:text-black" onClick={() => openFullscreen(modalImgIdx)} aria-label="Fullscreen">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V6a2 2 0 012-2h2m8 0h2a2 2 0 012 2v2m0 8v2a2 2 0 01-2 2h-2m-8 0H6a2 2 0 01-2-2v-2" /></svg>
@@ -222,15 +248,15 @@ const MaliAparati = () => {
                   ))}
                 </div>
                 {/* Naziv i model */}
-                <div className="text-center mb-2">
-                  <div className="font-bold text-base sm:text-lg text-gray-900 leading-tight">{products[modalIdx].name}</div>
-                  <div className="text-blue-700 font-medium text-xs sm:text-sm">Model: <span className="underline cursor-pointer">{products[modalIdx].model}</span></div>
-                </div>
+                <div className="font-bold text-xl sm:text-2xl text-gray-900 mb-2 text-center">{products[modalIdx].name}</div>
+                <div className="text-gray-600 mb-4 text-center">Model: {products[modalIdx].model}</div>
                 {/* Specifikacije */}
-                <div className="bg-gray-50 rounded-xl p-2 sm:p-4 text-gray-800 text-xs sm:text-sm font-medium w-full max-w-[95vw] mx-auto mt-2">
-                  {products[modalIdx].specs.map((spec, i) => (
-                    <div key={i}>{spec}</div>
-                  ))}
+                <div className="bg-gray-50 rounded-xl p-4 text-gray-800 text-sm font-medium w-full max-w-xl mx-auto mt-2 shadow">
+                  <ul className="list-disc pl-5">
+                    {products[modalIdx].specs.map((spec, i) => (
+                      <li key={i}>{spec}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

@@ -392,20 +392,26 @@ const BeautyCareCard = () => {
   );
 };
 
-// Dodaj CSS za pulsiranje
+// Novi CSS za suptilni glow pulsiranje
 const pulseCardStyles = `
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.2); }
-  70% { box-shadow: 0 0 0 16px rgba(59,130,246,0); }
-  100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59,130,246,0.18), 0 1px 4px 0 rgba(0,0,0,0.04);
+  }
+  50% {
+    box-shadow: 0 0 16px 8px rgba(59,130,246,0.22), 0 1px 8px 0 rgba(0,0,0,0.08);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59,130,246,0.18), 0 1px 4px 0 rgba(0,0,0,0.04);
+  }
 }
 .pulse-card {
-  animation: pulse 1.8s infinite;
-  transition: transform 0.2s;
+  animation: pulse-glow 2.2s infinite;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 .pulse-card:hover {
   transform: scale(1.04);
-  box-shadow: 0 8px 32px 0 rgba(59,130,246,0.12);
+  box-shadow: 0 0 32px 8px rgba(59,130,246,0.25), 0 4px 24px 0 rgba(0,0,0,0.10);
 }
 `;
 
@@ -444,16 +450,17 @@ const pulseCardBg = [
 ];
 
 const PulseProductCard = ({ product, bgIdx }: { product: typeof pulseProducts[0], bgIdx: number }) => (
-  <Link to={product.link} className={`pulse-card bg-gradient-to-br ${pulseCardBg[bgIdx % pulseCardBg.length]} rounded-2xl shadow-xl flex flex-col items-center p-6 transition-all duration-300 min-h-[340px] max-w-xs mx-auto group`}>
+  <Link to={product.link} className={
+    `pulse-card rounded-2xl bg-white border border-gray-200 shadow-md flex flex-col items-center p-6 transition-all duration-300 min-h-[340px] max-w-xs mx-auto group hover:border-blue-500 hover:shadow-xl`
+  }>
     <style>{pulseCardStyles}</style>
     <div className="w-full flex items-center justify-center mb-4">
-      <div className="bg-white rounded-xl w-full flex items-center justify-center h-48 overflow-hidden">
+      <div className="rounded-xl w-full flex items-center justify-center h-48 overflow-hidden p-2">
         <img src={product.image} alt={product.name} className="object-contain h-full w-full transition-all duration-500 group-hover:scale-105" />
       </div>
     </div>
     <div className="text-center mb-2">
       <div className="font-bold text-lg text-gray-900 leading-tight">{product.name}</div>
-      <div className="text-blue-700 font-medium text-sm">Model: {product.model}</div>
     </div>
   </Link>
 );
@@ -464,7 +471,10 @@ const ProductGrid = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* New Products */}
         <div className="mb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold text-black mb-8 text-center">NOVI PROIZVODI</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-black mb-4">NOVI PROIZVODI</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-300 mx-auto rounded-full"></div>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {pulseProducts.map((product, i) => (
               <PulseProductCard key={i} product={product} bgIdx={i} />
@@ -473,8 +483,11 @@ const ProductGrid = () => {
         </div>
 
         {/* Featured Products */}
-        <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-black mb-8 text-center">IZDVOJENI PROIZVODI</h2>
+        <div id="featured-products">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-black mb-4">IZDVOJENI PROIZVODI</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-300 mx-auto rounded-full"></div>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeaturedProductCard product={featuredProducts[0]} />
             <SmallAppliancesCard />
