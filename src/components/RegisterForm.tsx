@@ -26,7 +26,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   handleInputChange,
 }) => {
   return (
-    <Card className="bg-gray-800 border-gray-700 relative animate-fadein">
+    <Card className="bg-gray-800 border-gray-700 relative animate-fadein w-full max-w-xs p-4 sm:max-w-md sm:p-6 md:max-w-none md:p-12 md:rounded-2xl mx-auto overflow-y-auto max-h-[95vh] flex flex-col">
       <button
         className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white text-blue-700 rounded-full p-2 shadow-lg transition-colors"
         onClick={onClose}

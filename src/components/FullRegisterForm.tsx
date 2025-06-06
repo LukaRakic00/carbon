@@ -39,8 +39,8 @@ const FullRegisterForm: React.FC<FullRegisterFormProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 animate-fadein">
-      <Card className="bg-gray-800 border-gray-700 relative max-w-2xl w-full animate-fadein max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 animate-fadein px-2">
+      <Card className="bg-gray-800 border-gray-700 relative w-full max-w-2xl mx-auto rounded-3xl p-6 overflow-y-auto max-h-[95vh]">
         <button
           className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white text-blue-700 rounded-full p-2 shadow-lg transition-colors"
           onClick={onClose}
@@ -49,20 +49,20 @@ const FullRegisterForm: React.FC<FullRegisterFormProps> = ({ onClose }) => {
         >
           <X className="w-7 h-7" />
         </button>
-        <CardHeader>
-          <CardTitle className="text-white text-2xl">Forma za registraciju</CardTitle>
-          <CardDescription className="text-gray-300">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-white text-xl sm:text-2xl">Forma za registraciju</CardTitle>
+          <CardDescription className="text-gray-300 text-xs sm:text-sm">
             <div className="flex items-center space-x-2">
-              <Clock className="w-5 h-5 text-orange-400" />
+              <Clock className="w-4 h-4 text-orange-400" />
               <span>Rok za registraciju: 30 dana od kupovine</span>
             </div>
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6 overflow-y-auto flex-1">
+        <CardContent className="space-y-4 sm:space-y-6">
           {/* Personal Information */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Lični podaci</h3>
-            <div className="grid md:grid-cols-2 gap-4">
+            <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-4">Lični podaci</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <Label htmlFor="firstName" className="text-gray-300">Ime</Label>
                 <Input
@@ -104,9 +104,9 @@ const FullRegisterForm: React.FC<FullRegisterFormProps> = ({ onClose }) => {
           </div>
           {/* Address */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Adresa</h3>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="md:col-span-2">
+            <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-4">Adresa</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="sm:col-span-2">
                 <Label htmlFor="address" className="text-gray-300">Adresa</Label>
                 <Input
                   id="address"
@@ -128,8 +128,8 @@ const FullRegisterForm: React.FC<FullRegisterFormProps> = ({ onClose }) => {
           </div>
           {/* Product Information */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Podaci o proizvodu</h3>
-            <div className="grid md:grid-cols-2 gap-4">
+            <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-4">Podaci o proizvodu</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <Label htmlFor="productCategory" className="text-gray-300">Kategorija proizvoda</Label>
                 <Select onValueChange={(value) => handleInputChange('productCategory', value)}>
@@ -176,8 +176,8 @@ const FullRegisterForm: React.FC<FullRegisterFormProps> = ({ onClose }) => {
           </div>
           {/* Purchase Information */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Podaci o kupovini</h3>
-            <div className="grid md:grid-cols-2 gap-4">
+            <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-4">Podaci o kupovini</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <Label htmlFor="retailer" className="text-gray-300">Prodavac</Label>
                 <Input
@@ -200,7 +200,7 @@ const FullRegisterForm: React.FC<FullRegisterFormProps> = ({ onClose }) => {
           </div>
           {/* Invoice Upload */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Učitaj fotografiju računa</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-4">Učitaj fotografiju računa</h3>
             <div className="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center">
               <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-300 mb-4">
@@ -226,7 +226,7 @@ const FullRegisterForm: React.FC<FullRegisterFormProps> = ({ onClose }) => {
               )}
             </div>
           </div>
-          <Button className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
+          <Button className="w-full bg-blue-600 hover:bg-blue-700 text-base sm:text-lg py-2 sm:py-3 rounded-lg mt-2">
             Registruj nalog
           </Button>
         </CardContent>

@@ -135,31 +135,31 @@ const Stajleri = () => {
               <button className="absolute top-3 left-3 text-gray-500 hover:text-black" onClick={prevModal} aria-label="Prethodni"><ChevronLeft size={32} /></button>
               <button className="absolute top-3 right-14 text-gray-500 hover:text-black" onClick={nextModal} aria-label="Sledeći"><ChevronRight size={32} /></button>
               <div className="flex flex-col items-center w-full">
-                {/* Glavna slika */}
-                <div className="w-full flex items-center justify-center cursor-pointer" onClick={() => openFullscreen(modalImgIdx)}>
+              {/* Glavna slika */}
+              <div className="w-full flex items-center justify-center cursor-pointer" onClick={() => openFullscreen(modalImgIdx)}>
                   <img src={products[modalIdx].images[modalImgIdx]} alt={products[modalIdx].name} className="rounded-2xl object-contain max-h-[40vh] w-auto mx-auto mb-4 bg-gray-50" />
-                </div>
-                {/* Thumbnailovi */}
-                <div className="flex gap-2 sm:gap-4 mb-4 overflow-x-auto">
-                  {products[modalIdx].images.map((img, i) => (
-                    <img
-                      key={i}
-                      src={img}
-                      alt="thumb"
-                      className={`h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-xl border-2 cursor-pointer transition-all ${modalImgIdx === i ? 'border-blue-500 bg-white shadow-lg' : 'border-gray-200 bg-gray-100'}`}
-                      onClick={() => setModalImgIdx(i)}
-                    />
-                  ))}
-                </div>
-                {/* Naziv i model */}
+              </div>
+              {/* Thumbnailovi */}
+              <div className="flex gap-2 sm:gap-4 mb-4 overflow-x-auto">
+                {products[modalIdx].images.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt="thumb"
+                    className={`h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-xl border-2 cursor-pointer transition-all ${modalImgIdx === i ? 'border-blue-500 bg-white shadow-lg' : 'border-gray-200 bg-gray-100'}`}
+                    onClick={() => setModalImgIdx(i)}
+                  />
+                ))}
+              </div>
+              {/* Naziv i model */}
                 <div className="font-bold text-xl sm:text-2xl text-gray-900 mb-2 text-center">{products[modalIdx].name}</div>
                 <div className="text-gray-600 mb-4 text-center">Model: {products[modalIdx].model}</div>
-                {/* Specifikacije */}
+              {/* Specifikacije */}
                 <div className="bg-gray-50 rounded-xl p-4 text-gray-800 text-sm font-medium w-full max-w-xl mx-auto mt-2 shadow">
                   <ul className="list-disc pl-5">
-                    {products[modalIdx].specs.map((spec, i) => (
+                {products[modalIdx].specs.map((spec, i) => (
                       <li key={i}>{spec}</li>
-                    ))}
+                ))}
                   </ul>
                 </div>
               </div>

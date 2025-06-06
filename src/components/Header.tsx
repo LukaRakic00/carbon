@@ -92,14 +92,14 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white text-black border-b border-gray-200">
+    <header className="bg-white text-black border-b border-gray-200 sticky top-0 z-40 w-full shadow-sm">
       {/* Top bar */}
-      <div className="bg-gray-100 py-2 px-4 text-sm">
+      <div className="bg-gray-100 py-1 px-2 sm:py-2 sm:px-4 text-xs sm:text-sm">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div>
             <span></span>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <span>servis@smarttehnologysolution.co.rs</span>
             <span>011/635-12-20 | 011/635-12-12 </span>
           </div>
@@ -107,7 +107,7 @@ const Header = () => {
       </div>
 
       {/* Main header */}
-      <div className="max-w-7xl mx-auto px-4 py-4">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
@@ -115,7 +115,7 @@ const Header = () => {
               <img 
                 src="/uploads/6a7959a1-2e8e-44f9-a936-d24e3b93f043.png" 
                 alt="Carbon Logo" 
-                className="h-14"
+                className="h-10 sm:h-14 w-auto"
               />
             </a>
           </div>

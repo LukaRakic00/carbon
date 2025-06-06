@@ -471,10 +471,10 @@ const PulseProductCard = ({ product, bgIdx }: { product: typeof pulseProducts[0]
     }, 3000);
     return () => clearInterval(interval);
   }, [product.images]);
-  const imageSrc = product.images && product.images.length > 0 ? product.images[imgIdx] : product.image;
+  const imageSrc = product.images && product.images.length > 0 ? product.images[imgIdx] : undefined;
   return (
     <Link to={product.link} className={
-      `pulse-card rounded-2xl bg-white border border-gray-200 shadow-md flex flex-col items-center p-6 transition-all duration-300 min-h-[340px] max-w-xs mx-auto group hover:border-blue-500 hover:shadow-xl`
+      `pulse-card rounded-2xl bg-white border border-gray-200 shadow-md flex flex-col items-center p-6 transition-all duration-300 min-h-[400px] h-[400px] min-w-[280px] w-full max-w-[320px] flex-1 mx-auto group hover:border-blue-500 hover:shadow-xl`
     }>
       <style>{pulseCardStyles}</style>
       <div className="w-full flex items-center justify-center mb-4">

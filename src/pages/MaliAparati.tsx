@@ -253,9 +253,9 @@ const MaliAparati = () => {
                 {/* Specifikacije */}
                 <div className="bg-gray-50 rounded-xl p-4 text-gray-800 text-sm font-medium w-full max-w-xl mx-auto mt-2 shadow">
                   <ul className="list-disc pl-5">
-                    {products[modalIdx].specs.map((spec, i) => (
+                  {products[modalIdx].specs.map((spec, i) => (
                       <li key={i}>{spec}</li>
-                    ))}
+                  ))}
                   </ul>
                 </div>
               </div>
