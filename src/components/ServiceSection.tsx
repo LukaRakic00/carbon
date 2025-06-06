@@ -23,21 +23,21 @@ const ServiceSection = () => {
   ];
 
   return (
-    <section id="service" className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
+    <section id="service" className="py-10 sm:py-8 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-2">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-black mb-4">Servis i podrška</h2>
-          <p className="text-xl text-gray-700">
+          <h2 className="text-3xl sm:text-2xl font-bold text-black mb-4">Servis i podrška</h2>
+          <p className="text-lg sm:text-base text-gray-700">
             Tu smo da vam pomognemo sa vašim Carbon proizvodima
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {/* Contact Information */}
           <div>
             <Card className="bg-white border-gray-200 h-full shadow-lg">
               <CardHeader>
-                <CardTitle className="text-black text-2xl">Kontakt informacije</CardTitle>
+                <CardTitle className="text-black text-2xl sm:text-xl">Kontakt informacije</CardTitle>
                 <CardDescription className="text-gray-600">
                   Kontaktirajte naš servis za bilo kakvu pomoć
                 </CardDescription>
@@ -59,7 +59,7 @@ const ServiceSection = () => {
                   </div>
                   <div>
                     <h3 className="text-black font-semibold">Email</h3>
-                    <p className="text-gray-600">servis@smarttehnologysolution.co.rs</p>
+                    <p className="text-gray-600 break-all">servis@smarttehnologysolution.co.rs</p>
                   </div>
                 </div>
 
@@ -98,19 +98,19 @@ const ServiceSection = () => {
 
           {/* Services */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-black mb-6">Naše usluge</h3>
+            <h3 className="text-2xl sm:text-xl font-bold text-black mb-6">Naše usluge</h3>
             {services.map((service, index) => (
               <Card key={index} className="bg-white border-gray-200 shadow-lg">
-                <CardContent className="p-6">
+                <CardContent className="p-6 sm:p-4">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
                       {service.icon}
                     </div>
                     <div>
-                      <h4 className="text-black font-semibold text-lg mb-2">
+                      <h4 className="text-black font-semibold text-lg sm:text-base mb-2">
                         {service.title}
                       </h4>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 text-base sm:text-sm">
                         {service.description}
                       </p>
                     </div>
@@ -120,11 +120,11 @@ const ServiceSection = () => {
             ))}
 
             <Card className="bg-gradient-to-r from-blue-100 to-purple-100 border-blue-200 shadow-lg">
-              <CardContent className="p-6">
-                <h4 className="text-black font-semibold text-lg mb-4">
+              <CardContent className="p-6 sm:p-4">
+                <h4 className="text-black font-semibold text-lg sm:text-base mb-4">
                   Garantni uslovi
                 </h4>
-                <div className="space-y-2 text-gray-700">
+                <div className="space-y-2 text-gray-700 text-base sm:text-sm">
                   <p>• Bela tehnika: 6 godina (2+4 godine nakon registracije)</p>
                   <p>• Televizori: 3 godine (2+1 godina nakon registracije)</p>
                   <p>• Mali kućni aparati: 2 godine zakonska garancija</p>

@@ -175,7 +175,19 @@ const ProductCard = ({ product }: { product: any }) => (
   </div>
 );
 
+// Custom hook za md breakpoint
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
+  useEffect(() => {
+    const handler = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  return isDesktop;
+}
+
 const FeaturedProductCard = ({ product }: { product: any }) => {
+  const isDesktop = useIsDesktop();
   const badges = [
     'Inovativna tehnologija',
     'Energetska efikasnost',
@@ -187,7 +199,7 @@ const FeaturedProductCard = ({ product }: { product: any }) => {
     <div className="card-wrapper">
       <style>{popupPanelStyles}</style>
       <Link to="/frizideri" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-        <div className="card-custom flex flex-col justify-between items-center p-8 w-full h-[600px] cursor-pointer">
+        <div className="card-custom flex flex-col justify-between items-center p-8 w-full h-[600px] cursor-pointer md:hover:bg-gray-100 md:hover:transform md:hover:scale-105 md:transition-all md:duration-300">
           <div className="text-xl md:text-2xl font-bold text-center mb-2 mt-2">Carbon bela tehnika</div>
           <div className="relative w-full flex items-center justify-center">
             <FridgeCarousel />
@@ -206,21 +218,33 @@ const FeaturedProductCard = ({ product }: { product: any }) => {
           <div className="text-gray-600 text-sm mt-2 text-center">{shortText}</div>
         </div>
       </Link>
-      <div className="card-popup-panel">
-        <div className="row">
-          <a href="/frizideri" className="btn-link">
-            <Plus className="w-5 h-5 mr-1" /> Saznaj više
-          </a>
-          <a href="https://www.laptopcentar.rs/tip/carbon-bt" target="_blank" rel="noopener noreferrer" className="btn-link">
-            <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
-          </a>
+      {isDesktop && (
+        <div className="card-popup-panel">
+          <div className="row">
+            <a href="/frizideri" className="btn-link">
+              <Plus className="w-5 h-5 mr-1" /> Saznaj više
+            </a>
+            <a href="https://www.laptopcentar.rs/tip/carbon-bt" target="_blank" rel="noopener noreferrer" className="btn-link">
+              <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
+            </a>
+          </div>
         </div>
+      )}
+      {/* Mobilna dugmad ispod kartice */}
+      <div className="flex flex-col gap-2 mt-4 w-full md:hidden">
+        <a href="/frizideri" className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-200 text-blue-900 font-semibold py-3 px-4 text-base shadow-sm transition border border-blue-300">
+          <Plus className="w-5 h-5 text-blue-700" /> Saznaj više
+        </a>
+        <a href="https://www.laptopcentar.rs/tip/carbon-bt" target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 text-white font-semibold py-3 px-4 text-base shadow-sm transition border border-blue-600">
+          <MapPin className="w-5 h-5 text-white" /> Gde kupiti
+        </a>
       </div>
     </div>
   );
 };
 
 const SmallAppliancesCard = () => {
+  const isDesktop = useIsDesktop();
   const badges = [
     'Pametne funkcije',
     'Brza priprema',
@@ -230,8 +254,9 @@ const SmallAppliancesCard = () => {
   const shortText = 'Praktičnost, inovacija i moderan dizajn za vašu kuhinju. Uživajte u lakoj pripremi hrane i napitaka.';
   return (
     <div className="card-wrapper">
+      <style>{popupPanelStyles}</style>
       <Link to="/mali-aparati" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-        <div className="card-custom flex flex-col justify-between items-center p-8 w-full h-[600px] cursor-pointer">
+        <div className="card-custom flex flex-col justify-between items-center p-8 w-full h-[600px] cursor-pointer md:hover:bg-gray-100 md:hover:transform md:hover:scale-105 md:transition-all md:duration-300">
           <div className="text-xl md:text-2xl font-bold text-center mb-2 mt-2">Carbon mali kućni aparati</div>
           <div className="relative w-full flex items-center justify-center">
             <SmallAppliancesCarousel />
@@ -250,15 +275,26 @@ const SmallAppliancesCard = () => {
           <div className="text-gray-600 text-sm mt-2 text-center">{shortText}</div>
         </div>
       </Link>
-      <div className="card-popup-panel">
-        <div className="row">
-          <a href="/mali-aparati" className="btn-link">
-            <Plus className="w-5 h-5 mr-1" /> Saznaj više
-          </a>
-          <a href="https://www.laptopcentar.rs/tip/carbon-mka" target="_blank" rel="noopener noreferrer" className="btn-link">
-            <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
-          </a>
+      {isDesktop && (
+        <div className="card-popup-panel">
+          <div className="row">
+            <a href="/mali-aparati" className="btn-link">
+              <Plus className="w-5 h-5 mr-1" /> Saznaj više
+            </a>
+            <a href="https://www.laptopcentar.rs/tip/carbon-mka" target="_blank" rel="noopener noreferrer" className="btn-link">
+              <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
+            </a>
+          </div>
         </div>
+      )}
+      {/* Mobilna dugmad ispod kartice */}
+      <div className="flex flex-col gap-2 mt-4 w-full md:hidden">
+        <a href="/mali-aparati" className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-200 text-blue-900 font-semibold py-3 px-4 text-base shadow-sm transition border border-blue-300">
+          <Plus className="w-5 h-5 text-blue-700" /> Saznaj više
+        </a>
+        <a href="https://www.laptopcentar.rs/tip/carbon-mka" target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 text-white font-semibold py-3 px-4 text-base shadow-sm transition border border-blue-600">
+          <MapPin className="w-5 h-5 text-white" /> Gde kupiti
+        </a>
       </div>
     </div>
   );
@@ -285,6 +321,7 @@ const TVCarousel = () => {
 };
 
 const TVCard = () => {
+  const isDesktop = useIsDesktop();
   const badges = [
     'Smart funkcije',
     'Ultra HD',
@@ -294,8 +331,9 @@ const TVCard = () => {
   const shortText = 'Kristalno jasna slika, žive boje i vrhunski zvuk. Različite veličine ekrana i pametne funkcije za maksimalno uživanje u omiljenim sadržajima.';
   return (
     <div className="card-wrapper">
+      <style>{popupPanelStyles}</style>
       <Link to="/televizori" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-        <div className="card-custom flex flex-col justify-between items-center p-8 w-full h-[600px] cursor-pointer">
+        <div className="card-custom flex flex-col justify-between items-center p-8 w-full h-[600px] cursor-pointer md:hover:bg-gray-100 md:hover:transform md:hover:scale-105 md:transition-all md:duration-300">
           <div className="text-xl md:text-2xl font-bold text-center mb-2 mt-2">Carbon televizori</div>
           <div className="relative w-full flex items-center justify-center">
             <TVCarousel />
@@ -314,15 +352,26 @@ const TVCard = () => {
           <div className="text-gray-600 text-sm mt-2 text-center">{shortText}</div>
         </div>
       </Link>
-      <div className="card-popup-panel">
-        <div className="row">
-          <a href="/televizori" className="btn-link">
-            <Plus className="w-5 h-5 mr-1" /> Saznaj više
-          </a>
-          <a href="https://www.laptopcentar.rs/tip/carbon-tv1" target="_blank" rel="noopener noreferrer" className="btn-link">
-            <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
-          </a>
+      {isDesktop && (
+        <div className="card-popup-panel">
+          <div className="row">
+            <a href="/televizori" className="btn-link">
+              <Plus className="w-5 h-5 mr-1" /> Saznaj više
+            </a>
+            <a href="https://www.laptopcentar.rs/tip/carbon-tv1" target="_blank" rel="noopener noreferrer" className="btn-link">
+              <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
+            </a>
+          </div>
         </div>
+      )}
+      {/* Mobilna dugmad ispod kartice */}
+      <div className="flex flex-col gap-2 mt-4 w-full md:hidden">
+        <a href="/televizori" className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-200 text-blue-900 font-semibold py-3 px-4 text-base shadow-sm transition border border-blue-300">
+          <Plus className="w-5 h-5 text-blue-700" /> Saznaj više
+        </a>
+        <a href="https://www.laptopcentar.rs/tip/carbon-tv1" target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 text-white font-semibold py-3 px-4 text-base shadow-sm transition border border-blue-600">
+          <MapPin className="w-5 h-5 text-white" /> Gde kupiti
+        </a>
       </div>
     </div>
   );
@@ -349,6 +398,7 @@ const BeautyCareCarousel = () => {
 };
 
 const BeautyCareCard = () => {
+  const isDesktop = useIsDesktop();
   const badges = [
     'Višenamenski dizajn',
     'Neguje i štiti kosu',
@@ -358,8 +408,9 @@ const BeautyCareCard = () => {
   const shortText = 'Stilizujte kosu kao profesionalac! 8 u 1 stajler za savršene frizure, negu i zaštitu vaše kose svakog dana.';
   return (
     <div className="card-wrapper">
+      <style>{popupPanelStyles}</style>
       <Link to="/stajleri" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-        <div className="card-custom flex flex-col justify-between items-center p-8 w-full h-[600px] cursor-pointer">
+        <div className="card-custom flex flex-col justify-between items-center p-8 w-full h-[600px] cursor-pointer md:hover:bg-gray-100 md:hover:transform md:hover:scale-105 md:transition-all md:duration-300">
           <div className="text-xl md:text-2xl font-bold text-center mb-2 mt-2">Carbon lepota i nega</div>
           <div className="relative w-full flex items-center justify-center">
             <BeautyCareCarousel />
@@ -378,15 +429,26 @@ const BeautyCareCard = () => {
           <div className="text-gray-600 text-sm mt-2 text-center">{shortText}</div>
         </div>
       </Link>
-      <div className="card-popup-panel">
-        <div className="row">
-          <a href="/stajleri" className="btn-link">
-            <Plus className="w-5 h-5 mr-1" /> Saznaj više
-          </a>
-          <a href="https://www.laptopcentar.rs/artikal/carbon-8-u-1-multifunkcionalni-stajler-za-kosu-m8" target="_blank" rel="noopener noreferrer" className="btn-link">
-            <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
-          </a>
+      {isDesktop && (
+        <div className="card-popup-panel">
+          <div className="row">
+            <a href="/stajleri" className="btn-link">
+              <Plus className="w-5 h-5 mr-1" /> Saznaj više
+            </a>
+            <a href="https://www.laptopcentar.rs/artikal/carbon-8-u-1-multifunkcionalni-stajler-za-kosu-m8" target="_blank" rel="noopener noreferrer" className="btn-link">
+              <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
+            </a>
+          </div>
         </div>
+      )}
+      {/* Mobilna dugmad ispod kartice */}
+      <div className="flex flex-col gap-2 mt-4 w-full md:hidden">
+        <a href="/stajleri" className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-200 text-blue-900 font-semibold py-3 px-4 text-base shadow-sm transition border border-blue-300">
+          <Plus className="w-5 h-5 text-blue-700" /> Saznaj više
+        </a>
+        <a href="https://www.laptopcentar.rs/artikal/carbon-8-u-1-multifunkcionalni-stajler-za-kosu-m8" target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 text-white font-semibold py-3 px-4 text-base shadow-sm transition border border-blue-600">
+          <MapPin className="w-5 h-5 text-white" /> Gde kupiti
+        </a>
       </div>
     </div>
   );
