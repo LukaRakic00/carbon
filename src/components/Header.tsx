@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Menu, X, Search, User } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { searchProductByName, SearchProduct } from '../data/productSearch';
 import SearchResults from './SearchResults';
 import products from '../pages/MaliAparatiProducts';
+import RegisterForm from './RegisterForm';
+import FullRegisterForm from './FullRegisterForm';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +16,11 @@ const Header = () => {
   const [showResults, setShowResults] = useState(false);
   const [modalIdx, setModalIdx] = useState<number | null>(null);
   const [modalImgIdx, setModalImgIdx] = useState(0);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [registerFormData, setRegisterFormData] = useState({
+    firstName: '', lastName: '', email: '', phone: '', address: '', city: '', productCategory: '', model: '', serialNumber: '', purchaseDate: '', retailer: '', invoiceNumber: ''
+  });
+  const [registerInvoiceFile, setRegisterInvoiceFile] = useState<File | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -75,6 +82,15 @@ const Header = () => {
   // Pronađi prave proizvode za predloge
   const foundProducts = searchResults.map(res => products.find(p => p.model === res.model)).filter(Boolean);
 
+  const handleRegisterInputChange = (field: string, value: string) => {
+    setRegisterFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleRegisterFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) setRegisterInvoiceFile(file);
+  };
+
   return (
     <header className="bg-white text-black border-b border-gray-200">
       {/* Top bar */}
@@ -106,48 +122,65 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {menuItems.map((item) => (
-              <div
-                key={item.title}
-                className="relative"
-                onMouseEnter={() => setActiveDropdown(item.title)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button className="flex items-center space-x-1 hover:text-gray-600 transition-colors text-sm font-bold uppercase">
-                  <span>{item.title}</span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                
-                {activeDropdown === item.title && (
-                  <div className="absolute top-full left-0 pt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-50">
-                    <div className="py-2">
-                      {item.items.map((subItem) => {
-                        const path = subItem === 'Smart TV' ? '/televizori#smart-tv' : 
-                                   subItem === 'Android TV' ? '/televizori#android-tv' :
-                                   subItem === 'Frižideri' ? '/frizideri#frizideri' :
-                                   subItem === 'Zamrzivači' ? '/frizideri#zamrzivaci' :
-                                   subItem === 'Air fryeri' ? '/mali-aparati#air-fryeri' :
-                                   subItem === 'Aparati za kafu' ? '/mali-aparati#aparati-za-kafu' :
-                                   subItem === 'Multifunkcionalni stajler' ? '/stajleri#multifunkcionalni-stajler' : '#';
-                        
-                        return (
-                          <a
-                            key={subItem}
-                            href={path}
-                            onClick={(e) => handleNavigation(e, path)}
-                            className="block px-4 py-2 hover:bg-gray-100 transition-colors capitalize"
-                          >
-                            {subItem}
-                          </a>
-                        );
-                      })}
-                    </div>
+            {menuItems.map((item) => {
+              const mainPath =
+                item.title === 'Televizori' ? '/televizori' :
+                item.title === 'Bela tehnika' ? '/frizideri' :
+                item.title === 'Mali kućni aparati' ? '/mali-aparati' :
+                item.title === 'Lepota i nega' ? '/stajleri' : '/';
+              return (
+                <div
+                  key={item.title}
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown(item.title)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <div className="flex items-center space-x-1">
+                    <Link
+                      to={mainPath}
+                      className="hover:text-gray-600 transition-colors text-sm font-bold uppercase"
+                      onClick={() => setActiveDropdown(null)}
+                    >
+                      {item.title}
+                    </Link>
+                    <button
+                      className="hover:text-gray-600 transition-colors"
+                      onClick={() => setActiveDropdown(item.title)}
+                      aria-label={`Otvori meni za ${item.title}`}
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
                   </div>
-                )}
-              </div>
-            ))}
-            <a href="/#warranty" className="hover:text-gray-600 transition-colors text-sm font-bold uppercase">Garancija</a>
-            <a href="/#service" className="hover:text-gray-600 transition-colors text-sm font-bold uppercase">Servis</a>
+                  {activeDropdown === item.title && (
+                    <div className="absolute top-full left-0 pt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-50">
+                      <div className="py-2">
+                        {item.items.map((subItem) => {
+                          const path = subItem === 'Smart TV' ? '/televizori#smart-tv' : 
+                            subItem === 'Android TV' ? '/televizori#android-tv' :
+                            subItem === 'Frižideri' ? '/frizideri#frizideri' :
+                            subItem === 'Zamrzivači' ? '/frizideri#zamrzivaci' :
+                            subItem === 'Air fryeri' ? '/mali-aparati#air-fryeri' :
+                            subItem === 'Aparati za kafu' ? '/mali-aparati#aparati-za-kafu' :
+                            subItem === 'Multifunkcionalni stajler' ? '/stajleri#multifunkcionalni-stajler' : '#';
+                          return (
+                            <Link
+                              key={subItem}
+                              to={path}
+                              onClick={(e) => handleNavigation(e, path)}
+                              className="block px-4 py-2 hover:bg-gray-100 transition-colors capitalize"
+                            >
+                              {subItem}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            <Link to="/#warranty" className="hover:text-gray-600 transition-colors text-sm font-bold uppercase">Garancija</Link>
+            <Link to="/#service" className="hover:text-gray-600 transition-colors text-sm font-bold uppercase">Servis</Link>
           </nav>
 
           {/* Right side icons */}
@@ -164,7 +197,7 @@ const Header = () => {
             >
               <Search className="w-5 h-5 font-bold" />
             </button>
-            <User className="w-5 h-5 cursor-pointer hover:text-gray-600" />
+            <User className="w-5 h-5 cursor-pointer hover:text-gray-600" onClick={() => setIsAccountOpen((v) => !v)} />
             
             {/* Mobile menu button */}
             <button
@@ -178,38 +211,53 @@ const Header = () => {
 
         {/* Search Bar */}
         {isSearchOpen && (
-          <div className="w-full mt-4 relative">
+          <div className="w-full mt-4 relative animate-fadein">
             <form onSubmit={handleSearch} className="w-full">
               <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-500">
+                  <Search className="w-6 h-6" />
+                </span>
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Pretražite proizvode..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+                  className="w-full pl-14 pr-28 py-4 rounded-full border-2 border-blue-400 shadow-xl bg-white/95 backdrop-blur-md focus:outline-none focus:ring-4 focus:ring-blue-200 text-lg transition-all duration-200 font-medium"
+                  style={{ boxShadow: '0 4px 24px 0 rgba(80, 120, 255, 0.10)' }}
                 />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    className="absolute right-20 top-1/2 -translate-y-1/2 bg-gray-100 hover:bg-red-100 text-gray-400 hover:text-red-500 rounded-full p-2 shadow transition-colors border border-gray-200"
+                    onClick={() => setSearchQuery("")}
+                    tabIndex={-1}
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                )}
                 <button
                   type="submit"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-gradient-to-tr from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 text-white rounded-full p-3 transition-all shadow-lg border-2 border-white"
+                  style={{ boxShadow: '0 2px 12px 0 rgba(80, 120, 255, 0.15)' }}
                 >
-                  <Search className="w-5 h-5 font-bold" />
+                  <Search className="w-5 h-5" />
                 </button>
               </div>
               {/* Predlozi ispod inputa */}
               {searchQuery && foundProducts.length > 0 && (
-                <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div className="absolute z-50 w-full mt-2 bg-white/95 border border-blue-100 rounded-xl shadow-xl divide-y overflow-hidden animate-fadein">
                   {foundProducts.map((product: any, idx: number) => (
                     <div
                       key={product.model}
-                      className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-blue-50 cursor-pointer transition-colors"
                       onClick={() => {
                         setModalIdx(products.findIndex(pr => pr.model === product.model));
                         setModalImgIdx(0);
                       }}
                     >
-                      <img src={product.images[0]} alt={product.name} className="h-10 w-10 object-contain rounded-lg bg-gray-50" />
+                      <img src={product.images[0]} alt={product.name} className="h-12 w-12 object-contain rounded-xl bg-gray-50 border border-gray-200" />
                       <div>
-                        <div className="font-bold text-sm text-gray-900">{product.name}</div>
+                        <div className="font-bold text-base text-gray-900">{product.name}</div>
                         <div className="text-xs text-gray-600">{product.model}</div>
                       </div>
                     </div>
@@ -267,39 +315,53 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden mt-4 bg-gray-50 rounded-lg">
             <div className="py-4 px-4 space-y-4">
-              {menuItems.map((item) => (
-                <div key={item.title}>
-                  <button className="w-full text-left font-bold text-sm py-2 border-b border-gray-200 uppercase">
-                    {item.title}
-                  </button>
-                  <div className="pl-4 mt-2 space-y-2">
-                    {item.items.map((subItem) => {
-                      const path = subItem === 'Smart TV' ? '/televizori#smart-tv' : 
-                                 subItem === 'Android TV' ? '/televizori#android-tv' :
-                                 subItem === 'Frižideri' ? '/frizideri#frizideri' :
-                                 subItem === 'Zamrzivači' ? '/frizideri#zamrzivaci' :
-                                 subItem === 'Air fryeri' ? '/mali-aparati#air-fryeri' :
-                                 subItem === 'Aparati za kafu' ? '/mali-aparati#aparati-za-kafu' :
-                                 subItem === 'Multifunkcionalni stajler' ? '/stajleri#multifunkcionalni-stajler' : '#';
-                      
-                      return (
-                        <a
-                          key={subItem}
-                          href={path}
-                          onClick={(e) => handleNavigation(e, path)}
-                          className="block py-1 text-gray-600 hover:text-black text-sm font-bold capitalize"
-                        >
-                          {subItem}
-                        </a>
-                      );
-                    })}
+              {menuItems.map((item) => {
+                const mainPath =
+                  item.title === 'Televizori' ? '/televizori' :
+                  item.title === 'Bela tehnika' ? '/frizideri' :
+                  item.title === 'Mali kućni aparati' ? '/mali-aparati' :
+                  item.title === 'Lepota i nega' ? '/stajleri' : '/';
+                return (
+                  <div key={item.title}>
+                    <Link
+                      to={mainPath}
+                      className="w-full text-left font-bold text-sm py-2 border-b border-gray-200 uppercase block hover:text-gray-600"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.title}
+                    </Link>
+                    <div className="pl-4 mt-2 space-y-2">
+                      {item.items.map((subItem) => {
+                        const path = subItem === 'Smart TV' ? '/televizori#smart-tv' : 
+                          subItem === 'Android TV' ? '/televizori#android-tv' :
+                          subItem === 'Frižideri' ? '/frizideri#frizideri' :
+                          subItem === 'Zamrzivači' ? '/frizideri#zamrzivaci' :
+                          subItem === 'Air fryeri' ? '/mali-aparati#air-fryeri' :
+                          subItem === 'Aparati za kafu' ? '/mali-aparati#aparati-za-kafu' :
+                          subItem === 'Multifunkcionalni stajler' ? '/stajleri#multifunkcionalni-stajler' : '#';
+                        return (
+                          <Link
+                            key={subItem}
+                            to={path}
+                            onClick={(e) => handleNavigation(e, path)}
+                            className="block py-1 text-gray-600 hover:text-black text-sm font-bold capitalize"
+                          >
+                            {subItem}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              ))}
-              <a href="/#warranty" className="block py-2 hover:text-gray-600 text-sm font-bold uppercase">Garancija</a>
-              <a href="/#service" className="block py-2 hover:text-gray-600 text-sm font-bold uppercase">Servis</a>
+                );
+              })}
+              <Link to="/#warranty" className="block py-2 hover:text-gray-600 text-sm font-bold uppercase">Garancija</Link>
+              <Link to="/#service" className="block py-2 hover:text-gray-600 text-sm font-bold uppercase">Servis</Link>
             </div>
           </div>
+        )}
+
+        {isAccountOpen && (
+          <FullRegisterForm onClose={() => setIsAccountOpen(false)} />
         )}
       </div>
     </header>

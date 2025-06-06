@@ -10,6 +10,7 @@ import MaliAparati from "./pages/MaliAparati";
 import Televizori from "./pages/Televizori";
 import Stajleri from "./pages/Stajleri";
 import ScrollToTop from "@/components/ScrollToTop";
+import PageTransition from "@/components/PageTransition";
 
 const queryClient = new QueryClient();
 
@@ -22,12 +23,12 @@ const App = () => (
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/frizideri" element={<Frizideri />} />
-          <Route path="/mali-aparati" element={<MaliAparati />} />
-          <Route path="/televizori" element={<Televizori />} />
-          <Route path="/stajleri" element={<Stajleri />} />
+          <Route path="/frizideri" element={<PageTransition><Frizideri /></PageTransition>} />
+          <Route path="/mali-aparati" element={<PageTransition><MaliAparati /></PageTransition>} />
+          <Route path="/televizori" element={<PageTransition><Televizori /></PageTransition>} />
+          <Route path="/stajleri" element={<PageTransition><Stajleri /></PageTransition>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

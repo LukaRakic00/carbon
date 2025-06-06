@@ -155,7 +155,14 @@ const Televizori = () => {
     
     if (filters.resolution.length > 0 && !filters.resolution.some(r => specs.includes(r.toLowerCase()))) return false;
     if (filters.diagonal.length > 0 && !filters.diagonal.some(d => specs.includes(d.toLowerCase()))) return false;
-    if (filters.type.length > 0 && !filters.type.some(t => specs.includes(t.toLowerCase()))) return false;
+    if (filters.type.length > 0) {
+      if (
+        filters.type.includes('Android TV') && !specs.includes('android')
+      ) return false;
+      if (
+        filters.type.includes('Smart TV') && (specs.includes('android') || !specs.includes('webos'))
+      ) return false;
+    }
     if (filters.backlight.length > 0 && !filters.backlight.some(b => specs.includes(b.toLowerCase()))) return false;
     
     return true;

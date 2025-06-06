@@ -58,34 +58,34 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results, onClose }) => {
           {/* MODAL ZA SPECIFIKACIJU */}
           {modalIdx !== null && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-              <div className="relative bg-white rounded-3xl shadow-2xl max-w-xl sm:max-w-2xl lg:max-w-3xl w-full h-auto mx-2 sm:mx-4 p-2 sm:p-4 flex flex-col items-center animate-fadeIn overflow-auto">
+              <div className="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full h-auto mx-2 p-3 flex flex-col items-center animate-fadeIn overflow-y-auto max-h-[90vh]">
                 {/* X dugme */}
-                <button className="absolute top-3 right-3 text-gray-500 hover:text-black" onClick={closeModal} aria-label="Zatvori"><X size={28} /></button>
+                <button className="absolute top-2 right-2 text-gray-500 hover:text-black" onClick={closeModal} aria-label="Zatvori"><X size={24} /></button>
                 {/* Strelice za sledeći/prethodni proizvod */}
-                <button className="absolute top-3 left-3 text-gray-500 hover:text-black" onClick={prevModal} aria-label="Prethodni"><ChevronLeft size={32} /></button>
-                <button className="absolute top-3 right-14 text-gray-500 hover:text-black" onClick={nextModal} aria-label="Sledeći"><ChevronRight size={32} /></button>
+                <button className="absolute top-2 left-2 text-gray-500 hover:text-black" onClick={prevModal} aria-label="Prethodni"><ChevronLeft size={24} /></button>
+                <button className="absolute top-2 right-10 text-gray-500 hover:text-black" onClick={nextModal} aria-label="Sledeći"><ChevronRight size={24} /></button>
                 <div className="flex flex-col items-center w-full">
                   {/* Glavna slika */}
                   <div className="w-full flex items-center justify-center">
-                    <img src={products[modalIdx].images[modalImgIdx]} alt={products[modalIdx].name} className="rounded-2xl object-contain max-h-[40vh] w-auto mx-auto mb-4 bg-gray-50" />
+                    <img src={products[modalIdx].images[modalImgIdx]} alt={products[modalIdx].name} className="rounded-xl object-contain max-h-40 w-auto mx-auto mb-3 bg-gray-50" />
                   </div>
                   {/* Thumbnailovi */}
-                  <div className="flex gap-2 sm:gap-4 mb-4 overflow-x-auto">
+                  <div className="flex gap-2 mb-3 overflow-x-auto">
                     {products[modalIdx].images.map((img, i) => (
                       <img
                         key={i}
                         src={img}
                         alt="thumb"
-                        className={`h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-xl border-2 cursor-pointer transition-all ${modalImgIdx === i ? 'border-blue-500 bg-white shadow-lg' : 'border-gray-200 bg-gray-100'}`}
+                        className={`h-8 w-8 object-contain rounded-lg border-2 cursor-pointer transition-all ${modalImgIdx === i ? 'border-blue-500 bg-white shadow-lg' : 'border-gray-200 bg-gray-100'}`}
                         onClick={() => setModalImgIdx(i)}
                       />
                     ))}
                   </div>
                   {/* Naziv i model */}
-                  <div className="font-bold text-xl sm:text-2xl text-gray-900 mb-2 text-center">{products[modalIdx].name}</div>
-                  <div className="text-gray-600 mb-4 text-center">Model: {products[modalIdx].model}</div>
+                  <div className="font-bold text-lg text-gray-900 mb-1 text-center">{products[modalIdx].name}</div>
+                  <div className="text-gray-600 mb-2 text-center text-sm">Model: {products[modalIdx].model}</div>
                   {/* Specifikacije */}
-                  <ul className="text-gray-700 text-left mb-4 max-w-xl mx-auto list-disc pl-5">
+                  <ul className="text-gray-700 text-left mb-2 max-w-xs mx-auto list-disc pl-5 text-sm">
                     {products[modalIdx].specs.map((spec: string, i: number) => (
                       <li key={i}>{spec}</li>
                     ))}

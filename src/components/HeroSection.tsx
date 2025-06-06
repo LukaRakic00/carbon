@@ -2,6 +2,22 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.transition = 'none';
+      el.style.opacity = '0.2';
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => {
+        el.style.transition = 'opacity 0.7s';
+        el.style.opacity = '1';
+      }, 300);
+      setTimeout(() => {
+        el.style.transition = '';
+      }, 1200);
+    }
+  };
+
   return (
     <section
       className="w-full flex items-center justify-center"
@@ -34,18 +50,20 @@ const HeroSection = () => {
             CARBON 6 godina garancije na frižidere i zamrzivače. Registrujte se i ostvarite 2+4 godine garancije na bilo koji Carbon frižider i zamrzivač <span style={{ fontWeight: 700 }}>kupljen do 31.12.2025.</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a
-              href="#featured-products"
+            <button
+              type="button"
+              onClick={() => scrollToSection('featured-products')}
               className="px-8 py-2 border-2 border-white text-white rounded-full bg-transparent text-lg font-medium hover:bg-white hover:text-[#5e7e9b] transition-colors w-full sm:w-auto text-center"
             >
               Pogledaj proizvode
-            </a>
-            <a
-              href="#warranty"
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollToSection('warranty')}
               className="px-8 py-2 border-2 border-white text-white rounded-full bg-transparent text-lg font-medium hover:bg-white hover:text-[#5e7e9b] transition-colors w-full sm:w-auto text-center"
             >
               Registruj garanciju
-            </a>
+            </button>
           </div>
         </div>
         {/* Right Side: Image */}

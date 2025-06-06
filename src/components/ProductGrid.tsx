@@ -419,25 +419,38 @@ const pulseProducts = [
   {
     name: 'Carbon Air Fryer 6l',
     model: 'KAF-60BE',
-    image: '/uploads/carbon air fryer 6l/1.jpg',
+    images: [
+      '/uploads/carbon air fryer 6l/1.jpg',
+      '/uploads/carbon air fryer 6l/2.jpg',
+      '/uploads/carbon air fryer 6l/3.jpg',
+    ],
     link: '/mali-aparati',
   },
   {
     name: 'Carbon aparat za kafu EM-CA201CB',
     model: 'EM-CA201CB',
-    image: '/uploads/carbon aparat za kafu EM-CA201CB/163327.jpg',
+    images: [
+      '/uploads/carbon aparat za kafu EM-CA201CB/163327.jpg',
+      '/uploads/carbon aparat za kafu EM-CA201CB/163328.jpg',
+    ],
     link: '/mali-aparati',
   },
   {
     name: 'Carbon Frižider SBS FF2-55NCRNX1 inox',
     model: 'FF2-55NCRNX1',
-    image: '/uploads/frizider/SBS FF2-55NCRNX1/s1.jpg',
+    images: [
+      '/uploads/frizider/SBS FF2-55NCRNX1/s1.jpg',
+      '/uploads/frizider/SBS FF2-55NCRNX1/s2.jpg',
+    ],
     link: '/frizideri',
   },
   {
     name: 'Carbon Multifunkcionalni stajler 8 u 1',
     model: 'M8',
-    image: '/uploads/lepota i nega/163334.jpg',
+    images: [
+      '/uploads/lepota i nega/163334.jpg',
+      '/uploads/lepota i nega/163335.jpg',
+    ],
     link: '/stajleri',
   },
 ];
@@ -449,21 +462,32 @@ const pulseCardBg = [
   'from-[#fce7f3] to-[#f1f5f9]', // pink-siva
 ];
 
-const PulseProductCard = ({ product, bgIdx }: { product: typeof pulseProducts[0], bgIdx: number }) => (
-  <Link to={product.link} className={
-    `pulse-card rounded-2xl bg-white border border-gray-200 shadow-md flex flex-col items-center p-6 transition-all duration-300 min-h-[340px] max-w-xs mx-auto group hover:border-blue-500 hover:shadow-xl`
-  }>
-    <style>{pulseCardStyles}</style>
-    <div className="w-full flex items-center justify-center mb-4">
-      <div className="rounded-xl w-full flex items-center justify-center h-48 overflow-hidden p-2">
-        <img src={product.image} alt={product.name} className="object-contain h-full w-full transition-all duration-500 group-hover:scale-105" />
+const PulseProductCard = ({ product, bgIdx }: { product: typeof pulseProducts[0], bgIdx: number }) => {
+  const [imgIdx, setImgIdx] = useState(0);
+  useEffect(() => {
+    if (!product.images || product.images.length < 2) return;
+    const interval = setInterval(() => {
+      setImgIdx((prev) => (prev + 1) % product.images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [product.images]);
+  const imageSrc = product.images && product.images.length > 0 ? product.images[imgIdx] : product.image;
+  return (
+    <Link to={product.link} className={
+      `pulse-card rounded-2xl bg-white border border-gray-200 shadow-md flex flex-col items-center p-6 transition-all duration-300 min-h-[340px] max-w-xs mx-auto group hover:border-blue-500 hover:shadow-xl`
+    }>
+      <style>{pulseCardStyles}</style>
+      <div className="w-full flex items-center justify-center mb-4">
+        <div className="rounded-xl w-full flex items-center justify-center h-48 overflow-hidden p-2">
+          <img src={imageSrc} alt={product.name} className="object-contain h-full w-full transition-all duration-500 group-hover:scale-105" />
+        </div>
       </div>
-    </div>
-    <div className="text-center mb-2">
-      <div className="font-bold text-lg text-gray-900 leading-tight">{product.name}</div>
-    </div>
-  </Link>
-);
+      <div className="text-center mb-2">
+        <div className="font-bold text-lg text-gray-900 leading-tight">{product.name}</div>
+      </div>
+    </Link>
+  );
+};
 
 const ProductGrid = () => {
   return (
