@@ -100,8 +100,11 @@ const Header = () => {
             <span></span>
           </div>
           <div className="flex items-center space-x-2 sm:space-x-4">
-            <span>servis@smarttehnologysolution.co.rs</span>
-            <span>011/635-12-20 | 011/635-12-12 </span>
+            <a href="mailto:servis@smarttehnologysolution.co.rs" className="hover:underline transition-colors">servis@smarttehnologysolution.co.rs</a>
+            <span className="hidden sm:inline">|</span>
+            <a href="tel:0116351220" className="hover:underline transition-colors ml-1">011/635-12-20</a>
+            <span className="mx-1">|</span>
+            <a href="tel:0116351212" className="hover:underline transition-colors">011/635-12-12</a>
           </div>
         </div>
       </div>

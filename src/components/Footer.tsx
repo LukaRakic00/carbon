@@ -1,28 +1,28 @@
 import React from 'react';
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const productCategories = [
-    'Televizori',
-    'Bela tehnika',
-    'Mali kućni aparati',
-    'Lepota i nega'
+    { name: 'Televizori', path: '/televizori' },
+    { name: 'Bela tehnika', path: '/frizideri' },
+    { name: 'Mali kućni aparati', path: '/mali-aparati' },
+    { name: 'Lepota i nega', path: '/stajleri' },
   ];
 
   const customerService = [
-    'Kontakt',
-    'Garancija',
-    'Servis',
-    'Politika privatnosti'
+    { name: 'Kontakt', path: 'mailto:servis@smarttehnologysolution.co.rs' },
+    { name: 'Garancija', path: '/#warranty' },
+    { name: 'Servis', path: '/#service' },
+    { name: 'Politika privatnosti', path: '/politika-privatnosti' },
   ];
 
   const company = [
-    'O nama',
-    'Novosti',
-    'Blog',
-    'Partneri'
+    { name: 'O nama', action: () => window.location.reload() },
+    { name: 'Novosti', url: 'https://www.instagram.com/carbon.srb/?igsh=MXFhM3NoYzk2cTR6dw%3D%3D#' },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <footer className="bg-gray-800 text-white">
@@ -39,21 +39,24 @@ const Footer = () => {
             <div className="space-y-3 mb-6">
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-gray-400" />
-                <span className="text-gray-300">Maglajska 11, Beograd</span>
+                <a href="https://www.google.com/maps/place/Maglajska+11,+Beograd" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:underline">Maglajska 11, Beograd</a>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gray-400" />
-                <span className="text-gray-300">011/635-12-20</span>
+                <a href="tel:0116351220" className="text-gray-300 hover:underline">011/635-12-20</a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-gray-400" />
+                <a href="tel:0116351212" className="text-gray-300 hover:underline">011/635-12-12</a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-gray-400" />
-                <span className="text-gray-300">servis@smarttehnologysolution.co.rs</span>
+                <a href="mailto:servis@smarttehnologysolution.co.rs" className="text-gray-300 hover:underline">servis@smarttehnologysolution.co.rs</a>
               </div>
             </div>
 
             <div className="flex space-x-4">
-          
-              <a href="#" className="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition-colors">
+              <a href="https://www.instagram.com/carbon.srb/?igsh=MXFhM3NoYzk2cTR6dw%3D%3D#" target="_blank" rel="noopener noreferrer" className="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
@@ -64,10 +67,10 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Proizvodi</h3>
             <ul className="space-y-3">
               {productCategories.map((category) => (
-                <li key={category}>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                    {category}
-                  </a>
+                <li key={category.name}>
+                  <Link to={category.path} className="text-gray-300 hover:text-white transition-colors">
+                    {category.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -78,15 +81,11 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Korisnička podrška</h3>
             <ul className="space-y-3">
               {customerService.map((service) => (
-                <li key={service}>
-                  {service === 'Politika privatnosti' ? (
-                    <Link to="/politika-privatnosti" className="text-gray-300 hover:text-white transition-colors">
-                      {service}
-                    </Link>
+                <li key={service.name}>
+                  {service.path.startsWith('mailto:') ? (
+                    <a href={service.path} className="text-gray-300 hover:text-white transition-colors">{service.name}</a>
                   ) : (
-                    <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                      {service}
-                    </a>
+                    <Link to={service.path} className="text-gray-300 hover:text-white transition-colors">{service.name}</Link>
                   )}
                 </li>
               ))}
@@ -98,10 +97,12 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Kompanija</h3>
             <ul className="space-y-3">
               {company.map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                    {item}
-                  </a>
+                <li key={item.name}>
+                  {item.action ? (
+                    <button onClick={item.action} className="text-gray-300 hover:text-white transition-colors bg-transparent border-none p-0 m-0 cursor-pointer">{item.name}</button>
+                  ) : (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">{item.name}</a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -117,9 +118,6 @@ const Footer = () => {
               © 2024 Carbon Electronics. Sva prava zadržana.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Uslovi korišćenja
-              </a>
               <Link to="/politika-privatnosti" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Politika privatnosti
               </Link>

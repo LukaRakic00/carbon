@@ -219,15 +219,15 @@ const FeaturedProductCard = ({ product }: { product: any }) => {
         </div>
       </Link>
       {isDesktop && (
-        <div className="card-popup-panel">
-          <div className="row">
-            <a href="/frizideri" className="btn-link">
-              <Plus className="w-5 h-5 mr-1" /> Saznaj više
-            </a>
-            <a href="https://www.laptopcentar.rs/tip/carbon-bt" target="_blank" rel="noopener noreferrer" className="btn-link">
-              <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
-            </a>
-          </div>
+      <div className="card-popup-panel">
+        <div className="row">
+          <a href="/frizideri" className="btn-link">
+            <Plus className="w-5 h-5 mr-1" /> Saznaj više
+          </a>
+          <a href="https://www.laptopcentar.rs/tip/carbon-bt" target="_blank" rel="noopener noreferrer" className="btn-link">
+            <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
+          </a>
+        </div>
         </div>
       )}
       {/* Mobilna dugmad ispod kartice */}
@@ -276,15 +276,15 @@ const SmallAppliancesCard = () => {
         </div>
       </Link>
       {isDesktop && (
-        <div className="card-popup-panel">
-          <div className="row">
-            <a href="/mali-aparati" className="btn-link">
-              <Plus className="w-5 h-5 mr-1" /> Saznaj više
-            </a>
-            <a href="https://www.laptopcentar.rs/tip/carbon-mka" target="_blank" rel="noopener noreferrer" className="btn-link">
-              <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
-            </a>
-          </div>
+      <div className="card-popup-panel">
+        <div className="row">
+          <a href="/mali-aparati" className="btn-link">
+            <Plus className="w-5 h-5 mr-1" /> Saznaj više
+          </a>
+          <a href="https://www.laptopcentar.rs/tip/carbon-mka" target="_blank" rel="noopener noreferrer" className="btn-link">
+            <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
+          </a>
+        </div>
         </div>
       )}
       {/* Mobilna dugmad ispod kartice */}
@@ -353,15 +353,15 @@ const TVCard = () => {
         </div>
       </Link>
       {isDesktop && (
-        <div className="card-popup-panel">
-          <div className="row">
-            <a href="/televizori" className="btn-link">
-              <Plus className="w-5 h-5 mr-1" /> Saznaj više
-            </a>
-            <a href="https://www.laptopcentar.rs/tip/carbon-tv1" target="_blank" rel="noopener noreferrer" className="btn-link">
-              <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
-            </a>
-          </div>
+      <div className="card-popup-panel">
+        <div className="row">
+          <a href="/televizori" className="btn-link">
+            <Plus className="w-5 h-5 mr-1" /> Saznaj više
+          </a>
+          <a href="https://www.laptopcentar.rs/tip/carbon-tv1" target="_blank" rel="noopener noreferrer" className="btn-link">
+            <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
+          </a>
+        </div>
         </div>
       )}
       {/* Mobilna dugmad ispod kartice */}
@@ -430,15 +430,15 @@ const BeautyCareCard = () => {
         </div>
       </Link>
       {isDesktop && (
-        <div className="card-popup-panel">
-          <div className="row">
-            <a href="/stajleri" className="btn-link">
-              <Plus className="w-5 h-5 mr-1" /> Saznaj više
-            </a>
-            <a href="https://www.laptopcentar.rs/artikal/carbon-8-u-1-multifunkcionalni-stajler-za-kosu-m8" target="_blank" rel="noopener noreferrer" className="btn-link">
-              <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
-            </a>
-          </div>
+      <div className="card-popup-panel">
+        <div className="row">
+          <a href="/stajleri" className="btn-link">
+            <Plus className="w-5 h-5 mr-1" /> Saznaj više
+          </a>
+          <a href="https://www.laptopcentar.rs/artikal/carbon-8-u-1-multifunkcionalni-stajler-za-kosu-m8" target="_blank" rel="noopener noreferrer" className="btn-link">
+            <MapPin className="w-5 h-5 mr-1" /> Gde kupiti
+          </a>
+        </div>
         </div>
       )}
       {/* Mobilna dugmad ispod kartice */}

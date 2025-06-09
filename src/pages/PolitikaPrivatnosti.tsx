@@ -8,7 +8,6 @@ const PolitikaPrivatnosti = () => (
     <div className="header text-center border-b-4 border-blue-700 pb-5 mb-8">
       <div className="company-name text-2xl font-bold text-blue-700 mb-2">Smart Technology Solution d.o.o.</div>
       <div className="document-title text-xl font-bold text-gray-900 mb-1">POLITIKA PRIVATNOSTI</div>
-      <div className="date text-xs text-gray-500 italic">Datum: 09. jun 2025.</div>
     </div>
     <div className="section mb-6 p-4 bg-gray-50 border-l-4 border-blue-700 rounded">
       <div className="section-title text-lg font-bold text-blue-700 mb-2 pb-1 border-b border-gray-200">1. OPŠTE ODREDBE</div>
