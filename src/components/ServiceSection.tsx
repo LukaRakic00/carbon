@@ -219,7 +219,7 @@ const ServiceSection = () => {
                   <img
                     src={brand.src}
                     alt={brand.alt}
-                    className="h-16 sm:h-20 w-auto object-contain mx-auto"
+                    className="h-16 sm:h-20 w-auto object-contain mx-auto transition-transform duration-200 hover:custom-pulse"
                     style={{ maxWidth: 120 }}
                   />
                 </SwiperSlide>
@@ -273,6 +273,14 @@ const ServiceSection = () => {
             .custom-swiper-pagination .swiper-pagination-bullet-active {
               background: #2563eb;
               color: #fff;
+            }
+            @keyframes custom-pulse {
+              0% { transform: scale(1); }
+              50% { transform: scale(1.13); }
+              100% { transform: scale(1); }
+            }
+            .hover\\:custom-pulse:hover {
+              animation: custom-pulse 0.5s cubic-bezier(0.4,0,0.6,1);
             }
           `}</style>
         </div>

@@ -252,11 +252,13 @@ const MaliAparati = () => {
                 {/* Naziv i model */}
                 <div className="font-bold text-xl sm:text-2xl text-gray-900 mb-2 text-center">{products[modalIdx].name}</div>
                 <div className="text-gray-600 mb-4 text-center">Model: {products[modalIdx].model}</div>
-                {/* Dugme za PDF specifikaciju za air fryere */}
+                {/* Dugme za PDF specifikaciju za air fryere i aparate za kafu */}
                 {(() => {
                   const pdfMap: Record<string, string> = {
                     'FR-CA1701B': '/uploads/air-fryer_pdf/Carbon air fryer 2.5 l.pdf',
                     'KAF-60BE': '/uploads/air-fryer_pdf/Carbon air fryer 6l.pdf',
+                    'EM-CA308B': '/uploads/aparati_za_kafu_pdf/Carbon aparat za kafu EM-CA308B.pdf',
+                    'EM-CA201CB': '/uploads/aparati_za_kafu_pdf/Carbon aparat za kafu EM-CA201CB.pdf',
                   };
                   const pdfUrl = pdfMap[products[modalIdx].model];
                   if (pdfUrl) {
