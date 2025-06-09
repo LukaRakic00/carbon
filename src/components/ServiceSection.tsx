@@ -26,7 +26,7 @@ const ServiceSection = () => {
     <section id="service" className="py-10 sm:py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-2">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-black mb-4 sm:text-2xl">Servis i podrška</h2>
+          <h2 className="text-4xl font-bold text-black mb-4">Servis i podrška</h2>
           <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-blue-200 rounded-full mx-auto mb-4"></div>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Tu smo da vam pomognemo sa vašim Carbon proizvodima
