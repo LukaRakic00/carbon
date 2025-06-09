@@ -32,6 +32,7 @@ const products = [
       '/uploads/carbon air fryer 6l/4.jpg',
       '/uploads/carbon air fryer 6l/5.jpg',
       '/uploads/carbon air fryer 6l/6.png',
+      '/uploads/carbon air fryer 6l/resetka.png',
     ],
     specs: [
       'Napon: 220-240V~50/60Hz',
@@ -153,6 +154,7 @@ const products = [
       '/uploads/wetransfer_televizori_2025-06-04_0745/carbonwebOSTV43FHDSW/169877.png',
       '/uploads/wetransfer_televizori_2025-06-04_0745/carbonwebOSTV43FHDSW/169884.jpg',
       '/uploads/wetransfer_televizori_2025-06-04_0745/carbonwebOSTV43FHDSW/169885.png',
+      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonwebOSTV43FHDSW/s2.png'
     ],
     specs: [
       'Tip ekrana: LED',
@@ -163,6 +165,12 @@ const products = [
       'Ugao gledanja: 178°',
       'Procesor: CPU: ARM Quad Core CA75 (2x) 1.0GHz, CA55 1.0GHz (2x), GPU: IMG BXE4 (700MHz)',
       'Operativni sistem: webOS 22',
+      'Standardni daljinski',
+      'Dimenzije ambalaže (ŠxDxV): 107*15,5*67 cm',
+      'Dimenzije TV-a sa postoljem: 97*21*61 cm',
+      'Dimenzije TV-a bez postolja: 97*8,5*56,5 cm',
+      'Težina TV-a sa postoljem: 6,75 kg',
+      'Težina kutije sa TV-om i priborom: 9,25 kg',
     ],
     category: 'Televizori',
   },
@@ -174,6 +182,7 @@ const products = [
       '/uploads/wetransfer_televizori_2025-06-04_0745/CarbonSmartTV504KUHDSW/169879.png',
       '/uploads/wetransfer_televizori_2025-06-04_0745/CarbonSmartTV504KUHDSW/169880.png',
       '/uploads/wetransfer_televizori_2025-06-04_0745/CarbonSmartTV504KUHDSW/169886.png',
+      '/uploads/wetransfer_televizori_2025-06-04_0745/CarbonSmartTV65QLED4KSW/daljinski.png',
     ],
     specs: [
       'Tip ekrana: LED Ultra HD 4K',
@@ -184,6 +193,11 @@ const products = [
       'Procesor: CPU: ARM Quad Core CA75 (2x) 1.0GHz, CA55 1.0GHz (2x), GPU: IMG BXE4 (700MHz)',
       'Operativni sistem: webOS 22',
       'Magic remote - magični daljinski',
+      'Dimenzije ambalaže (ŠxDxV): 120*14,5*72,22 cm',
+      'Dimenzije TV-a sa postoljem: 111*21*69,5 cm',
+      'Dimenzije TV-a bez postolja: 111*8*63,5 cm',
+      'Težina TV-a sa postoljem: 9,8 kg',
+      'Težina kutije sa TV-om i priborom: 12,25 kg',
     ],
     category: 'Televizori',
   },
@@ -195,6 +209,7 @@ const products = [
       '/uploads/wetransfer_televizori_2025-06-04_0745/CarbonSmartTV65QLED4KSW/169882.png',
       '/uploads/wetransfer_televizori_2025-06-04_0745/CarbonSmartTV65QLED4KSW/169883.png',
       '/uploads/wetransfer_televizori_2025-06-04_0745/CarbonSmartTV65QLED4KSW/169887.png',
+      '/uploads/wetransfer_televizori_2025-06-04_0745/CarbonSmartTV65QLED4KSW/daljinski.png',
     ],
     specs: [
       'Ultra HD 4K, QLED',
@@ -205,6 +220,11 @@ const products = [
       'Procesor: CPU: ARM Quad Core CA75 (2x) 1.0GHz, CA55 1.0GHz (2x), GPU: IMG BXE4 (700MHz)',
       'Operativni sistem: webOS 22',
       'Magic remote - magični daljinski',
+      'Dimenzije ambalaže (ŠxDxV): 160*18*93 cm',
+      'Dimenzije TV-a sa postoljem: 144,5*26*89 cm',
+      'Dimenzije TV-a bez postolja: 144,5*8*82,5 cm',
+      'Težina TV-a sa postoljem: 17,9 kg',
+      'Težina kutije sa TV-om i priborom: 23,65 kg',
     ],
     category: 'Televizori',
   },
@@ -315,7 +335,8 @@ const products = [
       'Kabl za napajanje: Ravan završetak sa rotacijom od 360°, Dužina kabla 2 metra, maksimalna snaga 115W',
       'Luksuzno pakovanje',
       '8 nastavaka, rukavica za zaštitu od toplote',
-      '3 nivoa temperature i hladan vazduh, 3 jačine ventilatora'
+      '3 nivoa temperature i hladan vazduh',
+      '3 jačine ventilatora'
     ],
     category: 'Lepota i nega',
   },

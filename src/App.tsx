@@ -11,6 +11,7 @@ import Televizori from "./pages/Televizori";
 import Stajleri from "./pages/Stajleri";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageTransition from "@/components/PageTransition";
+import PolitikaPrivatnosti from './pages/PolitikaPrivatnosti';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/mali-aparati" element={<PageTransition><MaliAparati /></PageTransition>} />
           <Route path="/televizori" element={<PageTransition><Televizori /></PageTransition>} />
           <Route path="/stajleri" element={<PageTransition><Stajleri /></PageTransition>} />
+          <Route path="/politika-privatnosti" element={<PageTransition><PolitikaPrivatnosti /></PageTransition>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>

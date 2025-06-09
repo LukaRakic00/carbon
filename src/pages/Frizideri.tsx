@@ -218,7 +218,7 @@ const Frizideri = () => {
         {/* MODAL ZA SPECIFIKACIJU */}
         {modalIdx !== null && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="relative bg-white rounded-3xl shadow-2xl max-w-xl sm:max-w-2xl lg:max-w-3xl w-full h-auto mx-2 sm:mx-4 p-2 sm:p-4 flex flex-col items-center animate-fadeIn overflow-auto">
+            <div className="relative bg-white rounded-3xl shadow-2xl max-w-lg w-full h-auto mx-2 p-2 sm:p-3 flex flex-col items-center animate-fadeIn overflow-auto max-h-[90vh]">
               {/* Fullscreen dugme */}
               <button className="absolute top-3 left-14 text-gray-500 hover:text-black" onClick={() => openFullscreen(modalImgIdx)} aria-label="Fullscreen">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V6a2 2 0 012-2h2m8 0h2a2 2 0 012 2v2m0 8v2a2 2 0 01-2 2h-2m-8 0H6a2 2 0 01-2-2v-2" /></svg>
@@ -248,6 +248,36 @@ const Frizideri = () => {
                 {/* Naziv i model */}
                 <div className="font-bold text-xl sm:text-2xl text-gray-900 mb-2 text-center">{products[modalIdx].name}</div>
                 <div className="text-gray-600 mb-4 text-center">Model: {products[modalIdx].model}</div>
+                {/* Dugme za PDF specifikaciju */}
+                {(() => {
+                  const pdfMap: Record<string, string> = {
+                    'DF2-28NCRNW1': '/uploads/frizideri-i-zamrzivac-pdf/Carbon DF2-28N frizider kombinovani.pdf',
+                    'DE2-34CRNW1': '/uploads/frizideri-i-zamrzivac-pdf/Carbon kombinovani frizider DE2-34.pdf',
+                    'FF2-55NCRNX1': '/uploads/frizideri-i-zamrzivac-pdf/Carbon SBS frizider FF2-55N.pdf',
+                    'BE1-200CRNW1': '/uploads/frizideri-i-zamrzivac-pdf/Carbon zamrzivac BE1-200.pdf',
+                  };
+                  const pdfUrl = pdfMap[products[modalIdx].model];
+                  if (pdfUrl) {
+                    return (
+                      <a
+                        href={pdfUrl}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-3 px-7 py-3 mb-6 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-200 hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-blue-200"
+                      >
+                        <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 transition-transform duration-200 group-hover:translate-y-1">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-8m0 8l-4-4m4 4l4-4" />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M20 16.5V19a2 2 0 01-2 2H6a2 2 0 01-2-2v-2.5" />
+                          </svg>
+                        </span>
+                        Preuzmi PDF specifikaciju
+                      </a>
+                    );
+                  }
+                  return null;
+                })()}
                 {/* Specifikacije */}
                 <div className="bg-gray-50 rounded-xl p-4 text-gray-800 text-sm font-medium w-full max-w-xl mx-auto mt-2 shadow">
                   <ul className="list-disc pl-5">

@@ -110,12 +110,12 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center mr-2">
             <a href="/">
               <img 
-                src="/uploads/6a7959a1-2e8e-44f9-a936-d24e3b93f043.png" 
+                src="/uploads/Carbon_logo_bold_1.svg" 
                 alt="Carbon Logo" 
-                className="h-10 sm:h-14 w-auto"
+                className="h-8 sm:h-10 w-auto"
               />
             </a>
           </div>

@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const productCategories = [
@@ -79,9 +79,15 @@ const Footer = () => {
             <ul className="space-y-3">
               {customerService.map((service) => (
                 <li key={service}>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                    {service}
-                  </a>
+                  {service === 'Politika privatnosti' ? (
+                    <Link to="/politika-privatnosti" className="text-gray-300 hover:text-white transition-colors">
+                      {service}
+                    </Link>
+                  ) : (
+                    <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                      {service}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -114,9 +120,9 @@ const Footer = () => {
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Uslovi korišćenja
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link to="/politika-privatnosti" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Politika privatnosti
-              </a>
+              </Link>
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Kolačići
               </a>
