@@ -268,7 +268,7 @@ const Header = () => {
             {/* MODAL ZA SPECIFIKACIJU IZ PREDLOGA */}
             {modalIdx !== null && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-                <div className="relative bg-white rounded-3xl shadow-2xl max-w-xl sm:max-w-2xl lg:max-w-3xl w-full h-auto mx-2 sm:mx-4 p-2 sm:p-4 flex flex-col items-center animate-fadeIn overflow-auto">
+                <div className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full h-auto mx-2 p-2 sm:p-3 flex flex-col items-center animate-fadeIn overflow-auto max-h-[70vh]">
                   <button className="absolute top-3 right-3 text-gray-500 hover:text-black" onClick={() => setModalIdx(null)} aria-label="Zatvori"><X size={28} /></button>
                   <div className="flex flex-col items-center w-full">
                     <div className="w-full flex items-center justify-center">

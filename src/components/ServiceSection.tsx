@@ -131,7 +131,7 @@ const ServiceSection = () => {
                   <p>• Mali kućni aparati: 2 godine zakonska garancija</p>
                 </div>
                 <p className="text-sm text-gray-600 mt-4">
-                  * Produžena garancija važi samo uz registraciju u roku od 30 dana
+                  * Produžena garancija važi samo uz registraciju u roku od 30 dana, u toku promo &nbsp;&nbsp;&nbsp;perioda do 31.12.2025
                 </p>
               </CardContent>
             </Card>

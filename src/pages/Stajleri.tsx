@@ -19,6 +19,7 @@ const products = [
       'Kabl za napajanje: Ravan završetak sa rotacijom od 360°, Dužina kabla 2 metra, maksimalna snaga 115W',
       'Luksuzno pakovanje',
       '8 nastavaka, rukavica za zaštitu od toplote',
+      '3 nivoa temperature i hladan vazduh, 3 jačine ventilatora'
     ],
   },
 ];

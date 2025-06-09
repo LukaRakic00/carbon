@@ -46,6 +46,7 @@ const products = [
       'Digitalna temperatura: 80-200C',
       '8 podešavanja funkcija kuvanja',
       'Nelepljiva podloga za prženje i posuda',
+      'U paketu se nalaze i nastavci – rešetka i ražnjići – koji omogućavaju pripremu hrane na dva nivoa istovremeno.',
       'Vidljiv prozor',
       'Težina: N.W./G.W. 10.8/12kg',
       'Dimenzije kartona: 654x402x375mm',
