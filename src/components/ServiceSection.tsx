@@ -30,21 +30,17 @@ const ServiceSection = () => {
 
   // Partneri slider logika
   const brands = [
-    { src: '/uploads/brendovi/axisLogo.png', alt: 'Axis' },
-    { src: '/uploads/brendovi/canon.png', alt: 'Canon' },
-    { src: '/uploads/brendovi/cisco.png', alt: 'Cisco' },
-    { src: '/uploads/brendovi/citrix.png', alt: 'Citrix' },
-    { src: '/uploads/brendovi/connect.png', alt: 'Connect' },
-    { src: '/uploads/brendovi/CPLogo.png', alt: 'Check Point' },
-    { src: '/uploads/brendovi/dell.png', alt: 'Dell' },
-    { src: '/uploads/brendovi/emc.png', alt: 'EMC' },
-    { src: '/uploads/brendovi/hause.png', alt: 'Hause' },
-    { src: '/uploads/brendovi/huawei.png', alt: 'Huawei' },
-    { src: '/uploads/brendovi/IBM.png', alt: 'IBM' },
     { src: '/uploads/brendovi/lenovo.webp', alt: 'Lenovo' },
-    { src: '/uploads/brendovi/oracle.webp', alt: 'Oracle' },
-    { src: '/uploads/brendovi/veeam.png', alt: 'Veeam' },
-    { src: '/uploads/brendovi/VMWare.png', alt: 'VMWare' },
+    { src: '/uploads/brendovi/cisco.png', alt: 'Cisco' },
+    { src: '/uploads/brendovi/checkPoint.png', alt: 'Check Point' },
+    { src: '/uploads/brendovi/IBM.png', alt: 'IBM' },
+    { src: '/uploads/brendovi/oracle.png', alt: 'Oracle' },
+    { src: '/uploads/brendovi/haier.png', alt: 'Haier' },
+    { src: '/uploads/brendovi/bosch.png', alt: 'Bosch' },
+    { src: '/uploads/brendovi/huawei.png', alt: 'Huawei' },
+    { src: '/uploads/brendovi/connect.png', alt: 'Connect' },
+    { src: '/uploads/brendovi/hause.png', alt: 'Hause' },
+    { src: '/uploads/brendovi/sonic.png', alt: 'Sonic' }
   ];
 
   return (

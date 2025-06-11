@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Menu, X, Search, User } from 'lucide-react';
+import { ChevronDown, Menu, X, Search } from 'lucide-react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { searchProductByName, SearchProduct } from '../data/productSearch';
 import SearchResults from './SearchResults';
 import products from '../pages/MaliAparatiProducts';
 import RegisterForm from './RegisterForm';
-import FullRegisterForm from './FullRegisterForm';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +15,6 @@ const Header = () => {
   const [showResults, setShowResults] = useState(false);
   const [modalIdx, setModalIdx] = useState<number | null>(null);
   const [modalImgIdx, setModalImgIdx] = useState(0);
-  const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [registerFormData, setRegisterFormData] = useState({
     firstName: '', lastName: '', email: '', phone: '', address: '', city: '', productCategory: '', model: '', serialNumber: '', purchaseDate: '', retailer: '', invoiceNumber: ''
   });
@@ -100,7 +98,7 @@ const Header = () => {
             <span></span>
           </div>
           <div className="flex items-center space-x-2 sm:space-x-4">
-            <a href="mailto:servis@smarttehnologysolution.co.rs" className="hover:underline transition-colors">servis@smarttehnologysolution.co.rs</a>
+            <a href="mailto:servis@smarttehnologysolution.co.rs" className="hover:underline transition-colors">servis</a>
             <span className="hidden sm:inline">|</span>
             <a href="tel:0116351220" className="hover:underline transition-colors ml-1">011/635-12-20</a>
             <span className="mx-1">|</span>
@@ -112,19 +110,21 @@ const Header = () => {
       {/* Main header */}
       <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2 sm:py-4">
         <div className="flex items-center justify-between">
+          {/* Logo - sada skroz levo */}
           {/* Logo */}
-          <div className="flex items-center mr-2">
+          <div className="flex items-center mr-2" style={{ marginLeft: 0 }}>
             <a href="/">
               <img 
                 src="/uploads/Carbon_logo_bold_1.svg" 
                 alt="Carbon Logo" 
                 className="h-8 sm:h-10 w-auto"
+                style={{ marginLeft: 0 }}
               />
             </a>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8" style={{ letterSpacing: '0.04em' }}>
             {menuItems.map((item) => {
               const mainPath =
                 item.title === 'Televizori' ? '/televizori' :
@@ -198,9 +198,8 @@ const Header = () => {
               }}
               className="hover:text-gray-600 transition-colors"
             >
-              <Search className="w-5 h-5 font-bold" />
+              <Search className="w-6 h-6 font-bold text-black" strokeWidth={3} />
             </button>
-            <User className="w-5 h-5 cursor-pointer hover:text-gray-600" onClick={() => setIsAccountOpen((v) => !v)} />
             
             {/* Mobile menu button */}
             <button
@@ -361,10 +360,6 @@ const Header = () => {
               <Link to="/#service" className="block py-2 hover:text-gray-600 text-sm font-bold uppercase">Servis</Link>
             </div>
           </div>
-        )}
-
-        {isAccountOpen && (
-          <FullRegisterForm onClose={() => setIsAccountOpen(false)} />
         )}
       </div>
     </header>

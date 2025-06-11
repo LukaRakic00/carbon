@@ -6,13 +6,13 @@ const PolitikaPrivatnosti = () => (
       📄 Preuzmi PDF
     </button>
     <div className="header text-center border-b-4 border-blue-700 pb-5 mb-8">
-      <div className="company-name text-2xl font-bold text-blue-700 mb-2">Smart Technology Solution d.o.o.</div>
+      <div className="company-name text-2xl font-bold text-blue-700 mb-2">International Trade Group d.o.o. </div>
       <div className="document-title text-xl font-bold text-gray-900 mb-1">POLITIKA PRIVATNOSTI</div>
     </div>
     <div className="section mb-6 p-4 bg-gray-50 border-l-4 border-blue-700 rounded">
       <div className="section-title text-lg font-bold text-blue-700 mb-2 pb-1 border-b border-gray-200">1. OPŠTE ODREDBE</div>
       <div className="section-content text-justify text-base leading-relaxed">
-        <span className="highlight bg-blue-50 px-1 rounded">Smart Technology Solution d.o.o.</span> Vaše lične podatke obrađuje u skladu sa zakonom i uz maksimalno poštovanje načela zaštite privatnosti. Posvećeni smo zaštiti svih prikupljenih podataka o Vama.
+        <span className="highlight bg-blue-50 px-1 rounded">International Trade Group d.o.o.</span> Vaše lične podatke obrađuje u skladu sa zakonom i uz maksimalno poštovanje načela zaštite privatnosti. Posvećeni smo zaštiti svih prikupljenih podataka o Vama.
       </div>
     </div>
     <div className="section mb-6 p-4 bg-gray-50 border-l-4 border-blue-700 rounded">
@@ -48,11 +48,11 @@ const PolitikaPrivatnosti = () => (
     <div className="section mb-6 p-4 bg-gray-50 border-l-4 border-blue-700 rounded">
       <div className="section-title text-lg font-bold text-blue-700 mb-2 pb-1 border-b border-gray-200">6. BEZBEDNOSNE MERE</div>
       <div className="section-content text-justify text-base leading-relaxed">
-        <span className="highlight bg-blue-50 px-1 rounded">Smart Technology Solution d.o.o.</span> preduzima sve potrebne mere predostrožnosti – uključujući administrativne, tehničke i fizičke mere – kako bi zaštitila Vaše lične podatke od gubitka, krađe, zloupotrebe, kao i od neovlašćenog pristupa, otkrivanja ili izmene. Vašim podacima mogu pristupiti, unositi ih i obrađivati samo lica ovlašćena za takve aktivnosti. Takođe, pristup podacima koji se unose ručno i čuvaju u papirnoj formi imaju isključivo ovlašćena lica. Svi zaposleni u Smart Technology Solution d.o.o. obavezni su da poštuju načela zaštite privatnosti.
+        <span className="highlight bg-blue-50 px-1 rounded">International Trade Group d.o.o.</span> preduzima sve potrebne mere predostrožnosti – uključujući administrativne, tehničke i fizičke mere – kako bi zaštitila Vaše lične podatke od gubitka, krađe, zloupotrebe, kao i od neovlašćenog pristupa, otkrivanja ili izmene. Vašim podacima mogu pristupiti, unositi ih i obrađivati samo lica ovlašćena za takve aktivnosti. Takođe, pristup podacima koji se unose ručno i čuvaju u papirnoj formi imaju isključivo ovlašćena lica. Svi zaposleni u International Trade Group d.o.o. obavezni su da poštuju načela zaštite privatnosti.
       </div>
     </div>
     <div className="footer mt-10 pt-6 border-t text-center text-sm text-gray-500">
-      <strong>Smart Technology Solution d.o.o.</strong><br />
+      <strong>International Trade Group d.o.o.</strong><br />
       Ovaj dokument predstavlja zvaničnu Politiku privatnosti kompanije<br />
       Za dodatne informacije kontaktirajte nas na zvaničnim kanalima komunikacije
     </div>

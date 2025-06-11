@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./carbon-mongoDB-project
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URL=mongodb+srv://devlukarakic:7c%23P2K39dQBhp!V@cluster0.fu4cybs.mongodb.net/registracije
+    networks:
+      - app-network
+    volumes:
+      - ./carbon-mongoDB-project:/app
+      - ./racuni:/app/racuni
+
+networks:
+  app-network:
+    driver: bridge
