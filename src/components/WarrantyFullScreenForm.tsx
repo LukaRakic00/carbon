@@ -92,7 +92,8 @@ const WarrantyFullScreenForm: React.FC<WarrantyFullScreenFormProps> = ({ onClose
       const data = new FormData();
       Object.entries(formData).forEach(([key, value]) => data.append(key, value));
       if (invoiceFile) data.append('invoiceFile', invoiceFile);
-      const response = await fetch('http://localhost:5000/api/garancije', {
+      const apiUrl = `${import.meta.env.VITE_API_URL}/api/garancije`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         body: data,
       });
