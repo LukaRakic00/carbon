@@ -41,6 +41,12 @@ mongoose.connect(process.env.MONGO_URL || 'mongodb+srv://devlukarakic:7c%23P2K39
   useUnifiedTopology: true,
 });
 
+console.log('SERVER STARTUJE! ENV:', {
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET ? '***' : 'NOT SET'
+});
+
 app.get('/', (req, res) => {
   res.send('Radi!');
 });
@@ -101,6 +107,21 @@ app.post('/api/garancije', upload.single('invoiceFile'), async (req, res) => {
       stringified: (() => { try { return JSON.stringify(err, Object.getOwnPropertyNames(err)); } catch { return 'Cannot stringify'; } })()
     });
   }
+});
+
+app.use((err, req, res, next) => {
+  console.error('GLOBAL ERROR:', err);
+  try {
+    console.error('Stringified global error:', JSON.stringify(err, Object.getOwnPropertyNames(err)));
+  } catch (e) {
+    console.error('Error stringifying global error:', e);
+  }
+  res.status(500).json({
+    error: err.message,
+    stack: err.stack,
+    full: err,
+    stringified: (() => { try { return JSON.stringify(err, Object.getOwnPropertyNames(err)); } catch { return 'Cannot stringify'; } })()
+  });
 });
 
 app.listen(5000, () => {
