@@ -5,6 +5,8 @@ const Garancija = require('./models/Garancija');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const app = express();
 const uploadFolder = path.join(__dirname, '..', 'uploads');
@@ -17,13 +19,18 @@ if (!fs.existsSync(uploadFolder)) {
   fs.mkdirSync(uploadFolder, { recursive: true });
 }
 
-// Multer storage za slike
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadFolder);
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'garancije',
+    allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
+    transformation: [{ width: 1200, height: 1200, crop: 'limit' }]
   }
 });
 const upload = multer({ storage: storage });
@@ -55,11 +62,11 @@ app.post('/api/garancije', upload.single('invoiceFile'), async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'Morate izabrati fajl računa!' });
     }
-    data.invoiceFile = req.file.filename;
+    data.invoiceFile = req.file.path; // Cloudinary URL
 
     const garancija = new Garancija(data);
     await garancija.save();
-    res.status(201).json({ message: 'Uspešno sačuvano!' });
+    res.status(201).json({ message: 'Uspešno sačuvano!', imageUrl: data.invoiceFile });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
