@@ -64,16 +64,41 @@ app.post('/api/garancije', upload.single('invoiceFile'), async (req, res) => {
     }
     data.invoiceFile = req.file.path; // Cloudinary URL
 
+    console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME);
+    console.log('CLOUDINARY_API_KEY:', process.env.CLOUDINARY_API_KEY);
+    console.log('CLOUDINARY_API_SECRET:', process.env.CLOUDINARY_API_SECRET ? '***' : 'NOT SET');
+    console.log('POST /api/garancije', {
+      body: req.body,
+      file: req.file
+    });
+
     const garancija = new Garancija(data);
     await garancija.save();
     res.status(201).json({ message: 'Uspešno sačuvano!', imageUrl: data.invoiceFile });
   } catch (err) {
-    console.error('FULL ERROR:', JSON.stringify(err, Object.getOwnPropertyNames(err)));
+    // Loguj sve moguće informacije o grešci
+    console.error('FULL ERROR:', err);
+    if (err instanceof Error) {
+      console.error('Error message:', err.message);
+      console.error('Error stack:', err.stack);
+    }
+    // Loguj sve property-je objekta
+    for (const key in err) {
+      if (Object.prototype.hasOwnProperty.call(err, key)) {
+        console.error(`err[${key}]:`, err[key]);
+      }
+    }
+    // Loguj kao string
+    try {
+      console.error('Stringified error:', JSON.stringify(err, Object.getOwnPropertyNames(err)));
+    } catch (e) {
+      console.error('Error stringifying:', e);
+    }
     res.status(500).json({
       error: err.message,
       stack: err.stack,
       full: err,
-      stringified: JSON.stringify(err, Object.getOwnPropertyNames(err))
+      stringified: (() => { try { return JSON.stringify(err, Object.getOwnPropertyNames(err)); } catch { return 'Cannot stringify'; } })()
     });
   }
 });
