@@ -68,8 +68,13 @@ app.post('/api/garancije', upload.single('invoiceFile'), async (req, res) => {
     await garancija.save();
     res.status(201).json({ message: 'Uspešno sačuvano!', imageUrl: data.invoiceFile });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message, stack: err.stack, full: err });
+    console.error('FULL ERROR:', JSON.stringify(err, Object.getOwnPropertyNames(err)));
+    res.status(500).json({
+      error: err.message,
+      stack: err.stack,
+      full: err,
+      stringified: JSON.stringify(err, Object.getOwnPropertyNames(err))
+    });
   }
 });
 
