@@ -190,9 +190,13 @@ const Header = () => {
               style={{fontSize: '0.85rem', letterSpacing: '0.03em'}}
               onClick={e => {
                 e.preventDefault();
-                const el = document.getElementById('partners');
-                if (el) {
-                  el.scrollIntoView({ behavior: 'smooth' });
+                if (location.pathname !== "/") {
+                  navigate("/#partners");
+                } else {
+                  const el = document.getElementById('partners');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  }
                 }
               }}
             >
@@ -378,11 +382,15 @@ const Header = () => {
                 onClick={e => {
                   e.preventDefault();
                   setIsMenuOpen(false);
-                  const el = document.getElementById('partners');
-                  if (el) {
-                    setTimeout(() => {
-                      el.scrollIntoView({ behavior: 'smooth' });
-                    }, 200);
+                  if (location.pathname !== "/") {
+                    navigate("/#partners");
+                  } else {
+                    const el = document.getElementById('partners');
+                    if (el) {
+                      setTimeout(() => {
+                        el.scrollIntoView({ behavior: 'smooth' });
+                      }, 200);
+                    }
                   }
                 }}
               >

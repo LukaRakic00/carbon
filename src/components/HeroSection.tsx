@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
@@ -18,38 +18,73 @@ const HeroSection = () => {
     }
   };
 
+  // Kombinacije slike i pozadine
+  const heroCombos = [
+    {
+      img: '/uploads/Carbon_bt_hero.png',
+      bg: 'linear-gradient(90deg, #18181b 0%, #1e293b 60%, #22c55e 100%)',
+      textBg: 'transparent',
+      imgBg: 'transparent',
+      title: 'Gde svežina traje duže',
+      desc: 'CARBON 6 godina garancije na frižidere i zamrzivače. Registrujte se i ostvarite 2+4 godine garancije na bilo koji Carbon frižider i zamrzivač <span style="font-weight:700">kupljen do 31.12.2025.</span>',
+    },
+    {
+      img: '/uploads/carbon_tv_hero.png',
+      bg: 'linear-gradient(90deg, #18181b 0%, #1e293b 60%, #19BAFF 100%)',
+      textBg: 'linear-gradient(90deg, rgba(25,186,255,0.10) 0%, rgba(25,186,255,0.18) 100%)',
+      imgBg: 'radial-gradient(circle at 70% 60%, rgba(25,186,255,0.25) 0%, rgba(25,186,255,0.10) 40%, transparent 80%)',
+      title: 'Pametan izbor za savršenu sliku',
+      desc: 'CARBON 3 godine garancije na televizore. Registrujte se i ostvarite <b>2+1 godinu garancije</b> na bilo koji Carbon televizor <span style="font-weight:700">kupljen do 31.12.2025.</span>',
+    },
+  ];
+  const [heroIdx, setHeroIdx] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroIdx((prev) => (prev + 1) % heroCombos.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+  // Sinkronizovan fade za tekst i sliku zajedno (i scale efekt)
+  const [fade, setFade] = useState(true);
+  useEffect(() => {
+    setFade(false);
+    const timeout = setTimeout(() => setFade(true), 500);
+    return () => clearTimeout(timeout);
+  }, [heroIdx]);
+
   return (
     <section
-      className="w-full flex items-center justify-center"
+      className="w-full flex items-center justify-center transition-colors duration-700"
       style={{
         minHeight: '500px',
-        background: 'linear-gradient(90deg, #18181b 0%, #1e293b 60%, #22c55e 100%)'
+        background: heroCombos[heroIdx].bg,
+        transition: 'background 1s cubic-bezier(0.4,0,0.2,1)'
       }}
     >
       {/* Desktop verzija (md i više) - tačno kao što si poslao */}
       <div className="hidden md:flex max-w-7xl w-full flex-row items-center justify-between px-4 py-10 md:py-0">
-        {/* Left Side: Text */}
-        <div className="flex-1 flex flex-col items-start justify-center text-left w-full md:w-auto">
+        {/* Left Side: Text sa pozadinom */}
+        <div className="flex-1 flex flex-col items-start justify-center text-left w-full md:w-auto transition-all duration-700">
           <h1
-            className="mb-6 font-bold"
+            className={`mb-6 font-bold transition-all duration-700 ${fade ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
             style={{
               color: '#6aad2f',
               fontSize: '2.1em',
               lineHeight: 1.1,
               fontWeight: 700,
+              transition: 'color 1s',
             }}
-          >
-            Gde svežina traje duže
-          </h1>
+            dangerouslySetInnerHTML={{ __html: heroCombos[heroIdx].title }}
+          />
           <p
-            className="text-white max-w-xl mb-8"
+            className={`text-white max-w-xl mb-8 transition-all duration-700 ${fade ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
             style={{
               fontSize: '1.15em',
               fontWeight: 400,
+              transition: 'color 1s',
             }}
-          >
-            CARBON 6 godina garancije na frižidere i zamrzivače. Registrujte se i ostvarite 2+4 godine garancije na bilo koji Carbon frižider i zamrzivač <span style={{ fontWeight: 700 }}>kupljen do 31.12.2025.</span>
-          </p>
+            dangerouslySetInnerHTML={{ __html: heroCombos[heroIdx].desc }}
+          />
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button
               type="button"
@@ -67,18 +102,30 @@ const HeroSection = () => {
             </button>
           </div>
         </div>
-        {/* Right Side: Image */}
-        <div className="flex-1 flex items-center justify-center md:justify-end mt-10 md:mt-0 w-full md:w-auto">
+        {/* Right Side: Image sa pozadinom */}
+        <div className="flex-1 flex items-center justify-center md:justify-end mt-10 md:mt-0 w-full md:w-auto relative transition-all duration-700"
+          style={{
+            background: heroCombos[heroIdx].imgBg,
+            borderRadius: '0',
+            marginRight: '0',
+            boxShadow: 'none',
+            transition: 'background 1s',
+          }}
+        >
           <img
-            src="/uploads/Carbon_bt_hero_985x985.png"
+            src={heroCombos[heroIdx].img}
             alt="Carbon Hero"
-            className="object-contain drop-shadow-xl"
+            className={`object-contain transition-all duration-700 ${fade ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
             style={{
               width: '100%',
               maxWidth: '500px',
               height: 'auto',
               maxHeight: '500px',
               minHeight: '220px',
+              border: 'none',
+              boxShadow: 'none',
+              borderRadius: 0,
+              transition: 'opacity 0.7s, transform 0.7s cubic-bezier(0.4,0,0.2,1)'
             }}
           />
         </div>

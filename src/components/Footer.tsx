@@ -97,11 +97,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {company.map((item) => (
                 <li key={item.name}>
-                  {item.action ? (
-                    <button onClick={item.action} className="text-gray-300 hover:text-white transition-colors bg-transparent border-none p-0 m-0 cursor-pointer">{item.name}</button>
-                  ) : (
-                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">{item.name}</a>
-                  )}
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">{item.name}</a>
                 </li>
               ))}
             </ul>
