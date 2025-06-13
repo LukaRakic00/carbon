@@ -18,7 +18,6 @@ const Footer = () => {
   ];
 
   const company = [
-    { name: 'O nama', action: () => window.location.reload() },
     { name: 'Novosti', url: 'https://www.instagram.com/carbon.srb/?igsh=MXFhM3NoYzk2cTR6dw%3D%3D#' },
   ];
 
@@ -32,7 +31,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <h2 className="text-3xl font-bold mb-6">CARBON</h2>
             <p className="text-gray-300 mb-6 max-w-md">
-              Vodećih brend premium kućnih aparata i televizora. 
+              Vodeći brend premium kućnih aparata i televizora. 
               Inovacija, kvalitet i dizajn u svakom proizvodu koji kreiramo.
             </p>
             
