@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { X, Upload, CheckCircle } from 'lucide-react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Calendar } from '@/components/ui/calendar';
+import { format, isAfter, isBefore, subDays, parseISO } from 'date-fns';
+import MyDatePicker from './MyDatePicker';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
 
 interface WarrantyFullScreenFormProps {
   onClose: () => void;
@@ -25,6 +31,8 @@ const WarrantyFullScreenForm: React.FC<WarrantyFullScreenFormProps> = ({ onClose
   const [invoiceFile, setInvoiceFile] = useState<File | null>(null);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [datePickerError, setDatePickerError] = useState<string | null>(null);
 
   // Helper za validaciju
   const validateField = (field: string, value: string) => {
@@ -114,7 +122,9 @@ const WarrantyFullScreenForm: React.FC<WarrantyFullScreenFormProps> = ({ onClose
   };
 
   // Date picker: max danas
-  const todayStr = new Date().toISOString().split('T')[0];
+  const today = new Date();
+  const minDate = subDays(today, 30);
+  const selectedDate = formData.purchaseDate ? parseISO(formData.purchaseDate) : undefined;
 
   return (
     <div className="w-full max-w-[1280px] mx-auto bg-gray-900 rounded-2xl p-8 shadow-2xl overflow-y-auto mt-8 mb-12" style={{ minHeight: 700 }}>
@@ -260,17 +270,68 @@ const WarrantyFullScreenForm: React.FC<WarrantyFullScreenFormProps> = ({ onClose
                 />
                 {errors.serialNumber && <div className="text-red-500 text-xs mt-1 animate-fadein">{errors.serialNumber}</div>}
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col relative group">
                 <label className="block text-gray-200 mb-1">Datum kupovine</label>
-                <input
-                  type="date"
-                  className="w-full p-3 rounded bg-gray-700 text-white border border-gray-600 focus:border-blue-500 outline-none mt-1"
-                  value={formData.purchaseDate}
-                  onChange={e => handleInputChange('purchaseDate', e.target.value)}
-                  onBlur={() => handleBlur('purchaseDate')}
-                  max={todayStr}
-                  placeholder="dd.mm.yyyy"
-                />
+                <div
+                  className="w-full p-3 rounded bg-gray-700 text-white border border-gray-600 focus-within:border-blue-500 outline-none mt-1 cursor-pointer transition-all duration-150 group-hover:shadow-lg flex items-center justify-between min-h-[48px]"
+                  onClick={() => setCalendarOpen(true)}
+                  tabIndex={0}
+                  style={{ userSelect: 'none' }}
+                >
+                  <span className={selectedDate ? 'text-white font-semibold' : 'text-gray-400'}>
+                    {selectedDate ? format(selectedDate, 'dd.MM.yyyy') : 'Izaberite datum kupovine'}
+                  </span>
+                  <span className="pointer-events-auto" onClick={e => { e.stopPropagation(); setCalendarOpen(true); }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="4" stroke="currentColor" strokeWidth="2" fill="none"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+                  </span>
+                </div>
+                <Dialog open={calendarOpen} onOpenChange={setCalendarOpen}>
+                  <DialogContent className="bg-gray-900 border-gray-700 p-4 rounded-xl flex flex-col items-center">
+                    <DayPicker
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={date => {
+                        if (!date) {
+                          setDatePickerError('Morate izabrati datum kupovine.');
+                          return;
+                        }
+                        if (isAfter(date, today)) {
+                          setDatePickerError('Ne možete uneti datum u budućnosti.');
+                          return;
+                        }
+                        if (isBefore(date, minDate)) {
+                          setDatePickerError(`Rok za registraciju je 30 dana od kupovine. Registracija važi za datume od: ${format(minDate, 'dd.MM.yyyy')}`);
+                          return;
+                        }
+                        setDatePickerError(null);
+                        handleInputChange('purchaseDate', format(date, 'yyyy-MM-dd'));
+                        setCalendarOpen(false);
+                      }}
+                      fromDate={minDate}
+                      toDate={today}
+                      className="bg-gray-900 text-white rounded-xl shadow-lg"
+                      styles={{
+                        caption: { color: '#60a5fa' },
+                        day_selected: { backgroundColor: '#2563eb', color: '#fff' },
+                        day_today: { border: '2px solid #60a5fa' },
+                      }}
+                      modifiersClassNames={{
+                        selected: 'bg-blue-600 text-white',
+                        today: 'border-blue-400 border-2',
+                      }}
+                      footer={
+                        datePickerError ? (
+                          <span className="text-red-500 font-semibold">{datePickerError}</span>
+                        ) :
+                          selectedDate ? (
+                            <span className="text-blue-400 font-semibold">Izabrano: {format(selectedDate, 'dd.MM.yyyy')}</span>
+                          ) : (
+                            <span className="text-red-500 font-semibold">Rok za registraciju: 30 dana od kupovine</span>
+                          )
+                      }
+                    />
+                  </DialogContent>
+                </Dialog>
                 {errors.purchaseDate && <div className="text-red-500 text-xs mt-1 animate-fadein">{errors.purchaseDate}</div>}
               </div>
             </div>

@@ -116,8 +116,7 @@ const WarrantySection = () => {
         {!showForm && (
           <div className="flex justify-center mb-8">
             <Button
-              className="relative text-xl px-10 py-5 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 shadow-xl text-white font-bold pulse-scale focus:scale-105 hover:scale-105 transition-transform duration-200 border-4 border-white md:text-2xl md:px-12 md:py-6"
-              style={{ boxShadow: '0 8px 32px 0 rgba(0, 80, 255, 0.25)' }}
+              className="carbon-glow-btn text-xl md:text-2xl font-bold px-10 py-5 md:px-12 md:py-6 rounded-full text-white"
               onClick={() => setShowForm(true)}
             >
               Prikaži formu za registraciju

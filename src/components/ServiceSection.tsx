@@ -30,17 +30,17 @@ const ServiceSection = () => {
 
   // Partneri slider logika
   const brands = [
-    { src: '/uploads/brendovi/lenovo.webp', alt: 'Lenovo' },
-    { src: '/uploads/brendovi/cisco.png', alt: 'Cisco' },
-    { src: '/uploads/brendovi/checkPoint.png', alt: 'Check Point' },
-    { src: '/uploads/brendovi/IBM.png', alt: 'IBM' },
-    { src: '/uploads/brendovi/oracle.png', alt: 'Oracle' },
-    { src: '/uploads/brendovi/haier.png', alt: 'Haier' },
-    { src: '/uploads/brendovi/bosch.png', alt: 'Bosch' },
-    { src: '/uploads/brendovi/huawei.png', alt: 'Huawei' },
-    { src: '/uploads/brendovi/connect.png', alt: 'Connect' },
-    { src: '/uploads/brendovi/hause.png', alt: 'Hause' },
-    { src: '/uploads/brendovi/sonic.png', alt: 'Sonic' }
+    { src: '/uploads/brendovi/lenovo.webp', alt: 'Lenovo', href:'https://www.lenovo.com/rs/sr/' },
+    { src: '/uploads/brendovi/cisco.png', alt: 'Cisco', href: 'https://www.cisco.com/'},
+    { src: '/uploads/brendovi/checkPoint.png', alt: 'Check Point', href: 'https://www.checkpoint.com/' },
+    { src: '/uploads/brendovi/IBM.png', alt: 'IBM', href: 'https://www.ibm.com/'},
+    { src: '/uploads/brendovi/oracle.png', alt: 'Oracle', href: 'https://www.oracle.com/'},
+    { src: '/uploads/brendovi/haier.png', alt: 'Haier', href: 'https://www.haier.com/' },
+    { src: '/uploads/brendovi/bosch.png', alt: 'Bosch', href: 'https://www.bosch.com/' },
+    { src: '/uploads/brendovi/huawei.png', alt: 'Huawei', href: 'https://www.huawei.com/' },
+    { src: '/uploads/brendovi/connect.png', alt: 'Connect', href: 'https://www.itg.rs/brands/connect.html' },
+    { src: '/uploads/brendovi/hause.png', alt: 'Hause', href: 'https://www.itg.rs/brands/hause.html' },
+    { src: '/uploads/brendovi/sonic.png', alt: 'Sonic', href: 'https://www.itg.rs/brands/sonic.html' }
   ];
 
   return (
@@ -120,9 +120,9 @@ const ServiceSection = () => {
 
                   <div className="pt-4">
                     <a href="tel:0116351220" className="w-full block group focus:outline-none">
-                      <button type="button" className="w-full flex items-center justify-center gap-3 py-4 px-0 rounded-2xl bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 shadow-xl text-white font-extrabold text-lg tracking-wide transition-all duration-300 hover:from-blue-700 hover:to-blue-500 hover:scale-105 focus:ring-4 focus:ring-blue-200">
-                        <Phone className="w-7 h-7" />
-                        <span className="text-lg font-bold tracking-wide">Pozovi servis</span>
+                      <button type="button" className="carbon-call-btn">
+                        <Phone className="w-7 h-7 mr-3" />
+                        <span>Pozovi servis</span>
                       </button>
                     </a>
                   </div>
@@ -173,7 +173,7 @@ const ServiceSection = () => {
         </div>
       </section>
       {/* Partneri slider */}
-      <section className="bg-white py-10">
+      <section id="partners" className="bg-white py-10">
         <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h3 className="text-4xl font-bold text-black mb-4 tracking-wide">Partneri</h3>
@@ -212,12 +212,14 @@ const ServiceSection = () => {
             >
               {brands.map((brand, i) => (
                 <SwiperSlide key={i} className="flex items-center justify-center">
-                  <img
-                    src={brand.src}
-                    alt={brand.alt}
-                    className="h-16 sm:h-20 w-auto object-contain mx-auto transition-transform duration-200 hover:custom-pulse"
-                    style={{ maxWidth: 120 }}
-                  />
+                  <a href={brand.href || '#'} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={brand.src}
+                      alt={brand.alt}
+                      className="h-16 sm:h-20 w-auto object-contain mx-auto transition-transform duration-200 hover:custom-pulse"
+                      style={{ maxWidth: 120 }}
+                    />
+                  </a>
                 </SwiperSlide>
               ))}
             </Swiper>

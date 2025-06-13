@@ -109,10 +109,9 @@ const Header = () => {
 
       {/* Main header */}
       <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2 sm:py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-8">
           {/* Logo - sada skroz levo */}
-          {/* Logo */}
-          <div className="flex items-center mr-2" style={{ marginLeft: 0 }}>
+          <div className="flex items-center mr-4" style={{ marginLeft: 0 }}>
             <a href="/">
               <img 
                 src="/uploads/Carbon_logo_bold_1.svg" 
@@ -124,7 +123,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8" style={{ letterSpacing: '0.04em' }}>
+          <nav className="hidden lg:flex items-center space-x-6" style={{ letterSpacing: '0.03em' }}>
             {menuItems.map((item) => {
               const mainPath =
                 item.title === 'Televizori' ? '/televizori' :
@@ -141,7 +140,8 @@ const Header = () => {
                   <div className="flex items-center space-x-1">
                     <Link
                       to={mainPath}
-                      className="hover:text-gray-600 transition-colors text-sm font-bold uppercase"
+                      className="hover:text-gray-600 transition-colors text-[13px] font-semibold uppercase whitespace-nowrap px-1 py-0.5"
+                      style={{fontSize: '0.85rem', letterSpacing: '0.03em'}} 
                       onClick={() => setActiveDropdown(null)}
                     >
                       {item.title}
@@ -182,8 +182,22 @@ const Header = () => {
                 </div>
               );
             })}
-            <Link to="/#warranty" className="hover:text-gray-600 transition-colors text-sm font-bold uppercase">Garancija</Link>
-            <Link to="/#service" className="hover:text-gray-600 transition-colors text-sm font-bold uppercase">Servis</Link>
+            <Link to="/#warranty" className="hover:text-gray-600 transition-colors text-[13px] font-semibold uppercase whitespace-nowrap px-1 py-0.5" style={{fontSize: '0.85rem', letterSpacing: '0.03em'}}>Garancija</Link>
+            <Link to="/#service" className="hover:text-gray-600 transition-colors text-[13px] font-semibold uppercase whitespace-nowrap px-1 py-0.5" style={{fontSize: '0.85rem', letterSpacing: '0.03em'}}>Servis</Link>
+            <a
+              href="#partners"
+              className="hover:text-gray-600 transition-colors text-[13px] font-semibold uppercase whitespace-nowrap px-1 py-0.5"
+              style={{fontSize: '0.85rem', letterSpacing: '0.03em'}}
+              onClick={e => {
+                e.preventDefault();
+                const el = document.getElementById('partners');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              Partneri
+            </a>
           </nav>
 
           {/* Right side icons */}
@@ -358,6 +372,22 @@ const Header = () => {
               })}
               <Link to="/#warranty" className="block py-2 hover:text-gray-600 text-sm font-bold uppercase">Garancija</Link>
               <Link to="/#service" className="block py-2 hover:text-gray-600 text-sm font-bold uppercase">Servis</Link>
+              <a
+                href="#partners"
+                className="block py-2 hover:text-gray-600 text-sm font-bold uppercase"
+                onClick={e => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  const el = document.getElementById('partners');
+                  if (el) {
+                    setTimeout(() => {
+                      el.scrollIntoView({ behavior: 'smooth' });
+                    }, 200);
+                  }
+                }}
+              >
+                Partneri
+              </a>
             </div>
           </div>
         )}

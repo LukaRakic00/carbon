@@ -8,11 +8,12 @@ const products = [
     name: 'Carbon TV 32HDAITGC',
     model: '32HDAITGC',
     images: [
+      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonTV32HDAITGC/129949.png',
+      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonTV32HDAITGC/113943.webp',
+      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonTV32HDAITGC/142528.jpg',
       '/uploads/wetransfer_televizori_2025-06-04_0745/carbonTV32HDAITGC/113941.webp',
       '/uploads/wetransfer_televizori_2025-06-04_0745/carbonTV32HDAITGC/113942.webp',
-      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonTV32HDAITGC/113943.webp',
-      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonTV32HDAITGC/129949.png',
-      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonTV32HDAITGC/142528.jpg',
+      
     ],
     specs: [
       'HD',
@@ -28,11 +29,11 @@ const products = [
     name: 'Carbon Android TV 50FHDSITGC',
     model: '50FHDSITGC',
     images: [
-      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonAndroidTV50FHDSITGC/113931.webp',
-      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonAndroidTV50FHDSITGC/113932.webp',
-      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonAndroidTV50FHDSITGC/113934.webp',
       '/uploads/wetransfer_televizori_2025-06-04_0745/carbonAndroidTV50FHDSITGC/140531.png',
+      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonAndroidTV50FHDSITGC/113934.webp',
       '/uploads/wetransfer_televizori_2025-06-04_0745/carbonAndroidTV50FHDSITGC/142530.jpg',
+      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonAndroidTV50FHDSITGC/113932.webp',
+      '/uploads/wetransfer_televizori_2025-06-04_0745/carbonAndroidTV50FHDSITGC/113931.webp',
     ],
     specs: [
       'Full HD',

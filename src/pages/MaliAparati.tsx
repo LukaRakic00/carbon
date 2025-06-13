@@ -8,10 +8,10 @@ const products = [
     name: 'Carbon Air Fryer 2,5l FR-CA1701B',
     model: 'FR-CA1701B',
     images: [
-      '/uploads/carbon air fryer 2,5l/160062.jpg',
+      '/uploads/carbon air fryer 2,5l/160065.jpg',
       '/uploads/carbon air fryer 2,5l/160063.jpg',
       '/uploads/carbon air fryer 2,5l/160064.jpg',
-      '/uploads/carbon air fryer 2,5l/160065.jpg',
+      '/uploads/carbon air fryer 2,5l/160062.jpg',
       '/uploads/carbon air fryer 2,5l/160066.jpg',
     ],
     specs: [
@@ -58,9 +58,9 @@ const products = [
     name: 'Carbon aparat za kafu 3 u 1 EM-CA308B',
     model: 'EM-CA308B',
     images: [
-      '/uploads/carbon aparat za kafu 3 u 1 EM-CA308B/163324.jpg',
       '/uploads/carbon aparat za kafu 3 u 1 EM-CA308B/163325.jpg',
       '/uploads/carbon aparat za kafu 3 u 1 EM-CA308B/163326.jpg',
+      '/uploads/carbon aparat za kafu 3 u 1 EM-CA308B/163324.jpg',
     ],
     specs: [
       '220-240V/110-120V 50/60Hz',
@@ -82,10 +82,10 @@ const products = [
     name: 'Carbon aparat za kafu EM-CA201CB',
     model: 'EM-CA201CB',
     images: [
-      '/uploads/carbon aparat za kafu EM-CA201CB/163327.jpg',
-      '/uploads/carbon aparat za kafu EM-CA201CB/163328.jpg',
       '/uploads/carbon aparat za kafu EM-CA201CB/163329.jpg',
+      '/uploads/carbon aparat za kafu EM-CA201CB/163327.jpg',
       '/uploads/carbon aparat za kafu EM-CA201CB/163330.jpg',
+      '/uploads/carbon aparat za kafu EM-CA201CB/163328.jpg'
     ],
     specs: [
       '220-240V/110-120V 50/60Hz',

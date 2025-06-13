@@ -121,9 +121,9 @@ const Footer = () => {
               <Link to="/politika-privatnosti" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Politika privatnosti
               </Link>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link to="/politika-kolacica" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Kolačići
-              </a>
+              </Link>
             </div>
           </div>
         </div>
