@@ -1,0 +1,48 @@
+.carbon-call-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #0a2240 0%, #3b82f6 100%);
+  color: #fff;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 4px 32px 0 rgba(59, 130, 246, 0.18), 0 0 0 8px rgba(59, 130, 246, 0.10);
+  padding: 1.1rem 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.22;
+  letter-spacing: 0.02em;
+  transition: box-shadow 0.22s, transform 0.18s, background 0.22s;
+  z-index: 1;
+  overflow: visible;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.carbon-call-btn::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 80%);
+  filter: blur(14px);
+  z-index: -1;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.carbon-call-btn:hover, .carbon-call-btn:focus {
+  background: linear-gradient(90deg, #17407e 0%, #60a5fa 100%);
+  box-shadow: 0 8px 48px 0 rgba(59, 130, 246, 0.22), 0 0 0 12px rgba(59, 130, 246, 0.13);
+  transform: scale(1.03);
+} 
